@@ -1,0 +1,761 @@
+% Journals
+
+% First the Full Name is given, then the abbreviation used in the AMS Math
+% Reviews, with an indication if it could not be found there.
+% Note the 2nd overwrites the 1st, so swap them if you want the full name.
+
+ %{AMS}
+ @String{AMSTrans = "American Mathematical Society Translations" }
+ @String{AMSTrans = "Amer. Math. Soc. Transl." }
+ @String{BullAMS = "Bulletin of the American Mathematical Society" }
+ @String{BullAMS = "Bull. Amer. Math. Soc." }
+ @String{ProcAMS = "Proceedings of the American Mathematical Society" }
+ @String{ProcAMS = "Proc. Amer. Math. Soc." }
+ @String{TransAMS = "Transactions of the American Mathematical Society" }
+ @String{TransAMS = "Trans. Amer. Math. Soc." }
+
+ %ACM
+ @String{CACM = "Communications of the {ACM}" }
+ @String{CACM = "Commun. {ACM}" }
+ @String{CompServ = "Comput. Surveys" }
+ @String{JACM = "J. ACM" }
+ @String{ACMMathSoft = "{ACM} Transactions on Mathematical Software" }
+ @String{ACMMathSoft = "{ACM} Trans. Math. Software" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newsletter" }
+ @String{SIGNUM = "{ACM} {SIGNUM} Newslett." }
+
+ @String{AmerSocio = "American Journal of Sociology" }
+ @String{AmerStatAssoc = "Journal of the American Statistical Association" }
+ @String{AmerStatAssoc = "J. Amer. Statist. Assoc." }
+ @String{ApplMathComp = "Applied Mathematics and Computation" }
+ @String{ApplMathComp = "Appl. Math. Comput." }
+ @String{AmerMathMonthly = "American Mathematical Monthly" }
+ @String{AmerMathMonthly = "Amer. Math. Monthly" }
+ @String{BIT = "{BIT}" }
+ @String{BritStatPsych = "British Journal of Mathematical and Statistical
+          Psychology" }
+ @String{BritStatPsych = "Brit. J. Math. Statist. Psych." }
+ @String{CanMathBull = "Canadian Mathematical Bulletin" }
+ @String{CanMathBull = "Canad. Math. Bull." }
+ @String{CompApplMath = "Journal of Computational and Applied Mathematics" }
+ @String{CompApplMath = "J. Comput. Appl. Math." }
+ @String{CompPhys = "Journal of Computational Physics" }
+ @String{CompPhys = "J. Comput. Phys." }
+ @String{CompStruct = "Computers and Structures" }
+ @String{CompStruct = "Comput. \& Structures" }
+ @String{CompJour = "The Computer Journal" }
+ @String{CompJour = "Comput. J." }
+ @String{CompSysSci = "Journal of Computer and System Sciences" }
+ @String{CompSysSci = "J. Comput. System Sci." }
+ @String{Computing = "Computing" }
+ @String{ContempMath = "Contemporary Mathematics" }
+ @String{ContempMath = "Contemp. Math." }
+ @String{Crelle = "Crelle's Journal" }
+ @String{GiornaleMath = "Giornale di Mathematiche" }
+ @String{GiornaleMath = "Giorn. Mat." } % didn't find in AMS MR., ibid.
+
+ %IEEE
+ @String{Computer = "{IEEE} Computer" }
+ @String{IEEETransComp = "{IEEE} Transactions on Computers" }
+ @String{IEEETransComp = "{IEEE} Trans. Comput." }
+ @String{IEEETransAC = "{IEEE} Transactions on Automatic Control" }
+ @String{IEEETransAC = "{IEEE} Trans. Automat. Control" }
+ @String{IEEESpec = "{IEEE} Spectrum" } % didn't find in AMS MR
+ @String{ProcIEEE = "Proceedings of the {IEEE}" }
+ @String{ProcIEEE = "Proc. {IEEE}" } % didn't find in AMS MR
+ @String{IEEETransAeroElec = "{IEEE} Transactions on Aerospace and Electronic
+     Systems" }
+ @String{IEEETransAeroElec = "{IEEE} Trans. Aerospace Electron. Systems" }
+
+ @String{IMANumerAna = "{IMA} Journal of Numerical Analysis" }
+ @String{IMANumerAna = "{IMA} J. Numer. Anal." }
+ @String{InfProcLet = "Information Processing Letters" }
+ @String{InfProcLet = "Inform. Process. Lett." }
+ @String{InstMathApp = "Journal of the Institute of Mathematics and
+     its Applications" }
+ @String{InstMathApp = "J. Inst. Math. Appl." }
+ @String{IntControl = "International Journal of Control" }
+ @String{IntControl = "Internat. J. Control" }
+ @String{IntNumerEng = "International Journal for Numerical Methods in
+     Engineering" }
+ @String{IntNumerEng = "Internat. J. Numer. Methods Engrg." }
+ @String{IntSuper = "International Journal of Supercomputing Applications" }
+ @String{IntSuper = "Internat. J. Supercomputing Applic." } % didn't find
+%% in AMS MR
+ @String{Kibernetika = "Kibernetika" }
+ @String{JResNatBurStand = "Journal of Research of the National Bureau
+     of Standards" }
+ @String{JResNatBurStand = "J. Res. Nat. Bur. Standards" }
+ @String{LinAlgApp = "Linear Algebra and its Applications" }
+ @String{LinAlgApp = "Linear Algebra Appl." }
+ @String{MathAnaAppl = "Journal of Mathematical Analysis and Applications" }
+ @String{MathAnaAppl = "J. Math. Anal. Appl." }
+ @String{MathAnnalen = "Mathematische Annalen" }
+ @String{MathAnnalen = "Math. Ann." }
+ @String{MathPhys = "Journal of Mathematical Physics" }
+ @String{MathPhys = "J. Math. Phys." }
+ @String{MathComp = "Mathematics of Computation" }
+ @String{MathComp = "Math. Comp." }
+ @String{MathScand = "Mathematica Scandinavica" }
+ @String{MathScand = "Math. Scand." }
+ @String{TablesAidsComp = "Mathematical Tables and Other Aids to Computation" }
+ @String{TablesAidsComp = "Math. Tables Aids Comput." }
+ @String{NumerMath = "Numerische Mathematik" }
+ @String{NumerMath = "Numer. Math." }
+ @String{PacificMath = "Pacific Journal of Mathematics" }
+ @String{PacificMath = "Pacific J. Math." }
+ @String{ParDistComp = "Journal of Parallel and Distributed Computing" }
+ @String{ParDistComp = "J. Parallel and Distrib. Comput." } % didn't find
+%% in AMS MR
+ @String{ParComputing = "Parallel Computing" }
+ @String{ParComputing = "Parallel Comput." }
+ @String{PhilMag = "Philosophical Magazine" }
+ @String{PhilMag = "Philos. Mag." }
+ @String{ProcNAS = "Proceedings of the National Academy of Sciences
+                    of the USA" }
+ @String{ProcNAS = "Proc. Nat. Acad. Sci. U. S. A." }
+ @String{Psychometrika = "Psychometrika" }
+ @String{QuartMath = "Quarterly Journal of Mathematics, Oxford, Series (2)" }
+ @String{QuartMath = "Quart. J. Math. Oxford Ser. (2)" }
+ @String{QuartApplMath = "Quarterly of Applied Mathematics" }
+ @String{QuartApplMath = "Quart. Appl. Math." }
+ @String{RevueInstStat = "Review of the International Statisical Institute" }
+ @String{RevueInstStat = "Rev. Inst. Internat. Statist." }
+
+ %SIAM
+ @String{JSIAM = "Journal of the Society for Industrial and Applied
+     Mathematics" }
+ @String{JSIAM = "J. Soc. Indust. Appl. Math." }
+ @String{JSIAMB = "Journal of the Society for Industrial and Applied
+     Mathematics, Series B, Numerical Analysis" }
+ @String{JSIAMB = "J. Soc. Indust. Appl. Math. Ser. B Numer. Anal." }
+ @String{SIAMAlgMeth = "{SIAM} Journal on Algebraic and Discrete Methods" }
+ @String{SIAMAlgMeth = "{SIAM} J. Algebraic Discrete Methods" }
+ @String{SIAMAppMath = "{SIAM} Journal on Applied Mathematics" }
+ @String{SIAMAppMath = "{SIAM} J. Appl. Math." }
+ @String{SIAMComp = "{SIAM} Journal on Computing" }
+ @String{SIAMComp = "{SIAM} J. Comput." }
+ @String{SIAMMatrix = "{SIAM} Journal on Matrix Analysis and Applications" }
+ @String{SIAMMatrix = "{SIAM} J. Matrix Anal. Appl." }
+ @String{SIAMNumAnal = "{SIAM} Journal on Numerical Analysis" }
+ @String{SIAMNumAnal = "{SIAM} J. Numer. Anal." }
+ @String{SIAMReview = "{SIAM} Review" }
+ @String{SIAMReview = "{SIAM} Rev." }
+ @String{SIAMSciStat = "{SIAM} Journal on Scientific and Statistical
+     Computing" }
+ @String{SIAMSciStat = "{SIAM} J. Sci. Statist. Comput." }
+
+ @String{SoftPracExp = "Software Practice and Experience" }
+ @String{SoftPracExp = "Software Prac. Experience" } % didn't find in AMS MR
+ @String{StatScience = "Statistical Science" }
+ @String{StatScience = "Statist. Sci." }
+ @String{Techno = "Technometrics" }
+ @String{USSRCompMathPhys = "{USSR} Computational Mathematics and Mathematical
+     Physics" }
+ @String{USSRCompMathPhys = "{U. S. S. R.} Comput. Math. and Math. Phys." }
+ @String{VLSICompSys = "Journal of {VLSI} and Computer Systems" }
+ @String{VLSICompSys = "J. {VLSI} Comput. Syst." }
+ @String{ZAngewMathMech = "Zeitschrift fur Angewandte Mathematik und
+     Mechanik" }
+ @String{ZAngewMathMech = "Z. Angew. Math. Mech." }
+ @String{ZAngewMathPhys = "Zeitschrift fur Angewandte Mathematik und Physik" }
+ @String{ZAngewMathPhys = "Z. Angew. Math. Phys." }
+
+% Publishers % ================================================= |
+
+ @String{Academic = "Academic Press" }
+ @String{ACMPress = "{ACM} Press" }
+ @String{AdamHilger = "Adam Hilger" }
+ @String{AddisonWesley = "Addison-Wesley" }
+ @String{AllynBacon = "Allyn and Bacon" }
+ @String{AMS = "American Mathematical Society" }
+ @String{Birkhauser = "Birkha{\"u}ser" }
+ @String{CambridgePress = "Cambridge University Press" }
+ @String{Chelsea = "Chelsea" }
+ @String{ClaredonPress = "Claredon Press" }
+ @String{DoverPub = "Dover Publications" }
+ @String{Eyolles = "Eyolles" }
+ @String{HoltRinehartWinston = "Holt, Rinehart and Winston" }
+ @String{Interscience = "Interscience" }
+ @String{JohnsHopkinsPress = "The Johns Hopkins University Press" }
+ @String{JohnWileySons = "John Wiley and Sons" }
+ @String{Macmillan = "Macmillan" }
+ @String{MathWorks = "The Math Works Inc." }
+ @String{McGrawHill = "McGraw-Hill" }
+ @String{NatBurStd = "National Bureau of Standards" }
+ @String{NorthHolland = "North-Holland" }
+ @String{OxfordPress = "Oxford University Press" }  %address Oxford or London?
+ @String{PergamonPress = "Pergamon Press" }
+ @String{PlenumPress = "Plenum Press" }
+ @String{PrenticeHall = "Prentice-Hall" }
+ @String{SIAMPub = "{SIAM} Publications" }
+ @String{Springer = "Springer-Verlag" }
+ @String{TexasPress = "University of Texas Press" }
+ @String{VanNostrand = "Van Nostrand" }
+ @String{WHFreeman = "W. H. Freeman and Co." }
+
+%Entries
+@online{shape-lab-no-date,
+	title = {Shapelab},
+	url = {https://shapelabvr.com/ },
+	urldate = {2025-01-20},
+        year={2025},
+}
+@online{gravity-sketch-no-date,
+	title = {GravitySketch},
+	url = {https://gravitysketch.com/},
+	urldate = {2025-01-20},
+        year={2025},
+}
+@article{kennedy1993simulator,
+  title={Simulator sickness questionnaire: An enhanced method for quantifying simulator sickness},
+  author={Kennedy, Robert S and Lane, Norman E and Berbaum, Kevin S and Lilienthal, Michael G},
+  journal={The international journal of aviation psychology},
+  volume={3},
+  number={3},
+  pages={203--220},
+  year={1993},
+  publisher={Taylor \& Francis}
+}
+
+@inproceedings{hart2006nasa,
+  title={NASA-task load index (NASA-TLX); 20 years later},
+  author={Hart, Sandra G},
+  booktitle={Proceedings of the human factors and ergonomics society annual meeting},
+  volume={50},
+  number={9},
+  pages={904--908},
+  year={2006},
+  organization={Sage publications Sage CA: Los Angeles, CA}
+}
+
+@article{lund2001measuring,
+  title={Measuring usability with the use questionnaire12},
+  author={Lund, Arnold M},
+  journal={Usability interface},
+  volume={8},
+  number={2},
+  pages={3--6},
+  year={2001}
+}
+
+@inproceedings{moo2021virtual,
+  title={Virtual materiality: Realistic clay sculpting in vr},
+  author={Moo-Young, Joss Kingdom and Hogue, Andrew and Szkudlarek, Veronika},
+  booktitle={Extended Abstracts of the 2021 Annual Symposium on Computer-Human Interaction in Play},
+  pages={105--110},
+  year={2021}
+}
+
+@incollection{faraj2013progressive,
+  title={Progressive medial axis filtration},
+  author={Faraj, Noura and Thiery, Jean-Marc and Boubekeur, Tamy},
+  booktitle={SIGGRAPH Asia 2013 Technical Briefs},
+  pages={1--4},
+  year={2013}
+}
+
+@article{stolpner2011medial,
+  title={Medial spheres for shape approximation},
+  author={Stolpner, Svetlana and Kry, Paul and Siddiqi, Kaleem},
+  journal={IEEE transactions on pattern analysis and machine intelligence},
+  volume={34},
+  number={6},
+  pages={1234--1240},
+  year={2011},
+  publisher={IEEE}
+}
+
+@inproceedings{yang2018dmat,
+  title={DMAT: Deformable medial axis transform for animated mesh approximation},
+  author={Yang, Baorong and Yao, Junfeng and Guo, Xiaohu},
+  booktitle={Computer Graphics Forum},
+  volume={37},
+  number={7},
+  pages={301--311},
+  year={2018},
+  organization={Wiley Online Library}
+}
+
+@inproceedings{kumar2015mujoco,
+  title={Mujoco haptix: A virtual reality system for hand manipulation},
+  author={Kumar, Vikash and Todorov, Emanuel},
+  booktitle={2015 IEEE-RAS 15th International Conference on Humanoid Robots (Humanoids)},
+  pages={657--663},
+  year={2015},
+  organization={IEEE}
+}
+
+@inproceedings{lougiakis2024comparing,
+  title={Comparing Physics-based Hand Interaction in Virtual Reality: Custom Soft Body Simulation vs. Off-the-Shelf Integrated Solution},
+    author={Lougiakis, Christos and González, Jorge Juan and Ganias, Giorgos and Katifori, Akrivi and Ioannis-Panagiotis and Roussou, Maria},
+  booktitle={2024 IEEE Conference Virtual Reality and 3D User Interfaces (VR)},
+  pages={743--753},
+  year={2024},
+  organization={IEEE}
+}
+
+@article{smith2020constraining,
+  title={Constraining dense hand surface tracking with elasticity},
+  author={Smith, Breannan and Wu, Chenglei and Wen, He and Peluse, Patrick and Sheikh, Yaser and Hodgins, Jessica K and Shiratori, Takaaki},
+  journal={ACM Transactions on Graphics (ToG)},
+  volume={39},
+  number={6},
+  pages={1--14},
+  year={2020},
+  publisher={ACM New York, NY, USA}
+}
+
+@article{schieber2024semantics,
+  title={Semantics-Controlled Gaussian Splatting for Outdoor Scene Reconstruction and Rendering in Virtual Reality},
+  author={Schieber, Hannah and Young, Jacob and Langlotz, Tobias and Zollmann, Stefanie and Roth, Daniel},
+  journal={arXiv preprint arXiv:2409.15959},
+  year={2024}
+}
+
+@article{lan2021medial,
+  title={Medial IPC: accelerated incremental potential contact with medial elastics},
+  author={Lan, Lei and Yang, Yin and Kaufman, Danny and Yao, Junfeng and Li, Minchen and Jiang, Chenfanfu},
+  journal={ACM Transactions on Graphics},
+  volume={40},
+  number={4},
+  year={2021}
+}
+
+@article{li2015q,
+  title={Q-mat: Computing medial axis transform by quadratic error minimization},
+  author={Li, Pan and Wang, Bin and Sun, Feng and Guo, Xiaohu and Zhang, Caiming and Wang, Wenping},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={35},
+  number={1},
+  pages={1--16},
+  year={2015},
+  publisher={ACM New York, NY, USA}
+}
+
+@article{sun2015medial,
+  title={Medial meshes--a compact and accurate representation of medial axis transform},
+  author={Sun, Feng and Choi, Yi-King and Yu, Yizhou and Wang, Wenping},
+  journal={IEEE transactions on visualization and computer graphics},
+  volume={22},
+  number={3},
+  pages={1278--1290},
+  year={2015},
+  publisher={IEEE}
+}
+
+@article{gao2024towards,
+  title={Towards Realistic Example-based Modeling via 3D Gaussian Stitching},
+  author={Gao, Xinyu and Yang, Ziyi and Gong, Bingchen and Han, Xiaoguang and Yang, Sipeng and Jin, Xiaogang},
+  journal={arXiv preprint arXiv:2408.15708},
+  year={2024}
+}
+
+@misc{shapelabvr,
+  author =       "ShapeLab",
+  year =         "2024",
+  month =        "January",
+  title =        "Shapelab",
+  lastaccessed = "",
+  url =          "https://shapelabvr.com/",
+}
+
+@misc{substance3d,
+  author =       "Substance3d",
+  year =         "2024",
+  month =        "January",
+  title =        "substance3d",
+  lastaccessed = "",
+  url =          "https://www.adobe.com/products/substance3d/apps/modeler.html",
+}
+
+@misc{gravitysketch,
+  author =       "GravitySketch",
+  year =         "2024",
+  month =        "January",
+  title =        "Gravity Sketch VR",
+  lastaccessed = "",
+  url =          "https://help.gravitysketch.com/hc/en-us/articles/5902302194077-What-is-SubD-Subdivision-Modelling",
+}
+
+@misc{kodon,
+  author =       "Kodon",
+  year =         "2024",
+  month =        "January",
+  title =        "KODON",
+  lastaccessed = "",
+  url =          "https://www.kodon.xyz/#about",
+}
+
+@inproceedings{haouchine2012physics,
+  title={Physics-based augmented reality for 3d deformable object},
+  author={Haouchine, Nazim and Dequidt, J{\'e}r{\'e}mie and Kerrien, Erwan and Berger, Marie-Odile and Cotin, St{\'e}phane},
+  booktitle={Eurographics Workshop on Virtual Reality Interaction and Physical Simulation},
+  year={2012}
+}
+
+@inproceedings{paulus2015augmented,
+  title={Augmented reality during cutting and tearing of deformable objects},
+  author={Paulus, Christoph J and Haouchine, Nazim and Cazier, David and Cotin, Stephane},
+  booktitle={2015 IEEE International Symposium on Mixed and Augmented Reality},
+  pages={54--59},
+  year={2015},
+  organization={IEEE}
+}
+
+@inproceedings{eroglu2018fluid,
+  title={Fluid sketching―Immersive sketching based on fluid flow},
+  author={Eroglu, Sevinc and Gebhardt, Sascha and Schmitz, Patric and Rausch, Dominik and Kuhlen, Torsten Wolfgang},
+  booktitle={2018 IEEE Conference on Virtual Reality and 3D User Interfaces (VR)},
+  pages={475--482},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{jacobs2011soft,
+  title={A soft hand model for physically-based manipulation of virtual objects},
+  author={Jacobs, Jan and Froehlich, Bernd},
+  booktitle={2011 IEEE virtual reality conference},
+  pages={11--18},
+  year={2011},
+  organization={IEEE}
+}
+
+@inproceedings{holl2018efficient,
+  title={Efficient physics-based implementation for realistic hand-object interaction in virtual reality},
+  author={H{\"o}ll, Markus and Oberweger, Markus and Arth, Clemens and Lepetit, Vincent},
+  booktitle={2018 IEEE conference on virtual reality and 3D user interfaces (VR)},
+  pages={175--182},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{verschoor2018soft,
+  title={Soft hand simulation for smooth and robust natural interaction},
+  author={Verschoor, Mickeal and Lobo, Daniel and Otaduy, Miguel A},
+  booktitle={2018 IEEE conference on virtual reality and 3D user interfaces (VR)},
+  pages={183--190},
+  year={2018},
+  organization={IEEE}
+}
+
+@inproceedings{marner2010augmented,
+  title={Augmented foam sculpting for capturing 3D models},
+  author={Marner, Michael R and Thomas, Bruce H},
+  booktitle={2010 IEEE Symposium on 3D User Interfaces (3DUI)},
+  pages={63--70},
+  year={2010},
+  organization={IEEE}
+}
+
+@article{chatterjee2024free,
+  title={Free-form Shape Modeling in XR: A Systematic Review},
+  author={Chatterjee, Shounak},
+  journal={arXiv preprint arXiv:2401.00924},
+  year={2024}
+}
+
+@inproceedings{schkolne2001surface,
+  title={Surface drawing: creating organic 3D shapes with the hand and tangible tools},
+  author={Schkolne, Steven and Pruett, Michael and Schr{\"o}der, Peter},
+  booktitle={Proceedings of the SIGCHI conference on Human factors in computing systems},
+  pages={261--268},
+  year={2001}
+}
+
+@inproceedings{kameyama1997virtual,
+  title={Virtual clay modeling system},
+  author={Kameyama, Ken-ichi},
+  booktitle={Proceedings of the ACM symposium on Virtual reality software and technology},
+  pages={197--200},
+  year={1997}
+}
+
+@article{Pohl2022Hands,
+  title = {Hafnia Hands: A Multi-Skin Hand Texture Resource for Virtual Reality Research},
+  author = {Pohl, Henning and Mottelson, Aske},
+  journal = {Frontiers in Virtual Reality},
+  volume = {3},
+  year = {2022},
+  issn = {2673-4192}
+}
+
+@inproceedings{mcdonnell2001virtual,
+  title={Virtual clay: A real-time sculpting system with haptic toolkits},
+  author={McDonnell, Kevin T and Qin, Hong and Wlodarczyk, Robert A},
+  booktitle={Proceedings of the 2001 symposium on Interactive 3D graphics},
+  pages={179--190},
+  year={2001}
+}
+
+@incollection{cui2017interactive,
+  title={Interactive shape modeling using leap motion controller},
+  author={Cui, Jian and Sourin, Alexei},
+  booktitle={SIGGRAPH Asia 2017 Technical Briefs},
+  pages={1--4},
+  year={2017}
+}
+
+@inproceedings{jiang2024vr,
+  title={VR-GS: a physical dynamics-aware interactive gaussian splatting system in virtual reality},
+  author={Jiang, Ying and Yu, Chang and Xie, Tianyi and Li, Xuan and Feng, Yutao and Wang, Huamin and Li, Minchen and Lau, Henry and Gao, Feng and Yang, Yin and Jiang, Chenfanfu},
+  booktitle={ACM SIGGRAPH 2024 Conference Papers},
+  pages={1--1},
+  year={2024}
+}
+
+@inproceedings{deng2023phyvr,
+  title={PhyVR: Physics-based Multi-material and Free-hand Interaction in VR},
+  author={Deng, Hanchen and Li, Jin and Gao, Yang and Liang, Xiaohui and Wu, Hongyu and Hao, Aimin},
+  booktitle={2023 IEEE International Symposium on Mixed and Augmented Reality (ISMAR)},
+  pages={454--462},
+  year={2023},
+  organization={IEEE}
+}
+
+@inproceedings{schulz2019rodmesh,
+  title={Rodmesh: Two-handed 3D surface modeling in virtual reality},
+  author={Schulz, HJ and Teschner, M and Wimmer, M},
+  booktitle={Vision, modeling and visualization},
+  pages={1--10},
+  year={2019}
+}
+
+@incollection{nealen2007fibermesh,
+  title={Fibermesh: designing freeform surfaces with 3d curves},
+  author={Nealen, Andrew and Igarashi, Takeo and Sorkine, Olga and Alexa, Marc},
+  booktitle={ACM SIGGRAPH 2007 papers},
+  pages={41--es},
+  year={2007}
+}
+
+@article{rosales2021adaptibrush,
+  title={AdaptiBrush: adaptive general and predictable VR ribbon brush.},
+  author={Rosales, Enrique and Ara{\'u}jo, Chrystiano and Rodriguez, Jafet and Vining, Nicholas and Yoon, Dongwook and Sheffer, Alla},
+  journal={ACM Trans. Graph.},
+  volume={40},
+  number={6},
+  pages={247--1},
+  year={2021}
+}
+
+@article{rosales2019surfacebrush,
+  title={SurfaceBrush: from virtual reality drawings to manifold surfaces},
+  author={Rosales, Enrique and Rodriguez, Jafet and Sheffer, Alla},
+  journal={arXiv preprint arXiv:1904.12297},
+  year={2019}
+}
+
+@inproceedings{yu2021cassie,
+  title={Cassie: Curve and surface sketching in immersive environments},
+  author={Yu, Emilie and Arora, Rahul and Stanko, Tibor and B{\ae}rentzen, J Andreas and Singh, Karan and Bousseau, Adrien},
+  booktitle={Proceedings of the 2021 CHI Conference on Human Factors in Computing Systems},
+  pages={1--14},
+  year={2021}
+}
+
+@inproceedings{arora2019magicalhands,
+  title={Magicalhands: Mid-air hand gestures for animating in vr},
+  author={Arora, Rahul and Kazi, Rubaiat Habib and Kaufman, Danny M and Li, Wilmot and Singh, Karan},
+  booktitle={Proceedings of the 32nd annual ACM symposium on user interface software and technology},
+  pages={463--477},
+  year={2019}
+}
+
+@article{dewaele2004interactive,
+  title={Interactive global and local deformations for virtual clay},
+  author={Dewaele, Guillaume and Cani, Marie-Paule},
+  journal={Graphical Models},
+  volume={66},
+  number={6},
+  pages={352--369},
+  year={2004},
+  publisher={Elsevier}
+}
+
+@inproceedings{barreiro2021natural,
+  title={Natural tactile interaction with virtual clay},
+  author={Barreiro, H{\'e}ctor and Torres, Joan and Otaduy, Miguel A},
+  booktitle={2021 IEEE World Haptics Conference (WHC)},
+  pages={403--408},
+  year={2021},
+  organization={IEEE}
+}
+
+@inproceedings{pihuit2008hands,
+  title={Hands on virtual clay},
+  author={Pihuit, Adeline and Kry, Paul G and Cani, Marie-Paule},
+  booktitle={2008 IEEE International Conference on Shape Modeling and Applications},
+  pages={267--268},
+  year={2008},
+  organization={IEEE}
+}
+
+@inproceedings{sheng2006interface,
+  title={An interface for virtual 3D sculpting via physical proxy.},
+  author={Sheng, Jia and Balakrishnan, Ravin and Singh, Karan},
+  booktitle={GRAPHITE},
+  volume={6},
+  pages={213--220},
+  year={2006}
+}
+
+@article{liu2021systematic,
+  title={A systematic analysis of hand movement functionality: qualitative classification and quantitative investigation of hand grasp behavior},
+  author={Liu, Yuan and Jiang, Li and Liu, Hong and Ming, Dong},
+  journal={Frontiers in neurorobotics},
+  volume={15},
+  pages={658075},
+  year={2021},
+  publisher={Frontiers Media SA}
+}
+
+@article{hu2018moving,
+  title={A moving least squares material point method with displacement discontinuity and two-way rigid body coupling},
+  author={Hu, Yuanming and Fang, Yu and Ge, Ziheng and Qu, Ziyin and Zhu, Yixin and Pradhana, Andre and Jiang, Chenfanfu},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={37},
+  number={4},
+  pages={1--14},
+  year={2018},
+  publisher={ACM New York, NY, USA}
+}
+
+@article{Fang2021IDP,
+    author = {Yu Fang and Minchen Li and Chenfanfu Jiang and Danny M. Kaufman},
+    title = {Guaranteed Globally Injective 3D Deformation Processing},
+    journal = {ACM Trans. Graph. (SIGGRAPH)},
+    year = {2021},
+    volume = {40},
+    number = {4},
+    articleno = {75}
+}
+
+@article{kerbl20233d,
+  title={3D Gaussian Splatting for Real-Time Radiance Field Rendering.},
+  author={Kerbl, Bernhard and Kopanas, Georgios and Leimk{\"u}hler, Thomas and Drettakis, George},
+  journal={ACM Trans. Graph.},
+  volume={42},
+  number={4},
+  pages={139--1},
+  year={2023}
+}
+
+@incollection{lorensen1998marching,
+  title={Marching cubes: A high resolution 3D surface construction algorithm},
+  author={Lorensen, William E and Cline, Harvey E},
+  booktitle={Seminal graphics: pioneering efforts that shaped the field},
+  pages={347--353},
+  year={1998}
+}
+
+@incollection{jiang2016material,
+  title={The material point method for simulating continuum materials},
+  author={Jiang, Chenfanfu and Schroeder, Craig and Teran, Joseph and Stomakhin, Alexey and Selle, Andrew},
+  booktitle={Acm siggraph 2016 courses},
+  pages={1--52},
+  year={2016}
+}
+
+@inproceedings{xie2024physgaussian,
+  title={Physgaussian: Physics-integrated 3d gaussians for generative dynamics},
+  author={Xie, Tianyi and Zong, Zeshun and Qiu, Yuxing and Li, Xuan and Feng, Yutao and Yang, Yin and Jiang, Chenfanfu},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={4389--4398},
+  year={2024}
+}
+
+@article{sulsky1995application,
+  title={Application of a particle-in-cell method to solid mechanics},
+  author={Sulsky, Deborah and Zhou, Shi-Jian and Schreyer, Howard L},
+  journal={Computer physics communications},
+  volume={87},
+  number={1-2},
+  pages={236--252},
+  year={1995},
+  publisher={Elsevier}
+}
+
+@article{mildenhall2021nerf,
+  title={Nerf: Representing scenes as neural radiance fields for view synthesis},
+  author={Mildenhall, Ben and Srinivasan, Pratul P and Tancik, Matthew and Barron, Jonathan T and Ramamoorthi, Ravi and Ng, Ren},
+  journal={Communications of the ACM},
+  volume={65},
+  number={1},
+  pages={99--106},
+  year={2021},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{chen2024gaussianeditor,
+  title={Gaussianeditor: Swift and controllable 3d editing with gaussian splatting},
+  author={Chen, Yiwen and Chen, Zilong and Zhang, Chi and Wang, Feng and Yang, Xiaofeng and Wang, Yikai and Cai, Zhongang and Yang, Lei and Liu, Huaping and Lin, Guosheng},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={21476--21485},
+  year={2024}
+}
+
+@article{hu2019taichi,
+  title={Taichi: a language for high-performance computation on spatially sparse data structures},
+  author={Hu, Yuanming and Li, Tzu-Mao and Anderson, Luke and Ragan-Kelley, Jonathan and Durand, Fr{\'e}do},
+  journal={ACM Transactions on Graphics (TOG)},
+  volume={38},
+  number={6},
+  pages={1--16},
+  year={2019},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{jang2014airsculpt,
+  title={Airsculpt: A wearable augmented reality 3d sculpting system},
+  author={Jang, Sung-A and Kim, Hyung-il and Woo, Woontack and Wakefield, Graham},
+  booktitle={Distributed, Ambient, and Pervasive Interactions: Second International Conference, DAPI 2014, Held as Part of HCI Interational 2014, Heraklion, Crete, Greece, June 22-27, 2014. Proceedings 2},
+  pages={130--141},
+  year={2014},
+  organization={Springer}
+}
+
+@article{galyean1991sculpting,
+  title={Sculpting: An interactive volumetric modeling technique},
+  author={Galyean, Tinsley A and Hughes, John F},
+  journal={ACM SIGGRAPH Computer Graphics},
+  volume={25},
+  number={4},
+  pages={267--274},
+  year={1991},
+  publisher={ACM New York, NY, USA}
+}
+
+@inproceedings{keefe2008tech,
+  title={Tech-note: Dynamic dragging for input of 3D trajectories},
+  author={Keefe, Daniel F and Zeleznik, Robert C and Laidlaw, David H},
+  booktitle={2008 IEEE Symposium on 3D User Interfaces},
+  pages={51--54},
+  year={2008},
+  organization={IEEE}
+}
+
+@inproceedings{ma2024get,
+  title={Get Your Hands Dirty? A Comparative Study of Tool Usage and Perceptual Engagement in Physical and Digital Sculpting},
+  author={Ma, Xinyu and Yan, Zhe and Meng, Hengyu and Cao, Zhihao and Jin, Yanan and Wang, Zeyu},
+  booktitle={Proceedings of the 16th Conference on Creativity \& Cognition},
+  pages={358--373},
+  year={2024}
+}
+
+@inproceedings{peng2020autocomplete,
+  title={Autocomplete animated sculpting},
+  author={Peng, Mengqi and Wei, Li-yi and Kazi, Rubaiat Habib and Kim, Vladimir G},
+  booktitle={Proceedings of the 33rd Annual ACM Symposium on User Interface Software and Technology},
+  pages={760--777},
+  year={2020}
+}
+
+@article{Kingma2014AdamAM,
+  title={Adam: A Method for Stochastic Optimization},
+  author={Diederik P. Kingma and Jimmy Ba},
+  journal={CoRR},
+  year={2014},
+  volume={abs/1412.6980},
+  url={https://api.semanticscholar.org/CorpusID:6628106}
+}

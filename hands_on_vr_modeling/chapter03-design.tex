@@ -1,0 +1,17 @@
+\section{Design Rationale}
+To make hands-on 3D modeling in VR responsive, immersive, and user-friendly, we have derived the following design requirements and functionalities:
+\begin{enumerate}
+    \item \textbf{Realistic Physics-based Simulation.} This provides users with an intuitive understanding of how their input translates into deformations, offering a more intuitive shape modeling process compared to conventional desktop-based tools. 
+    % This approach helps users achieve results that closely align with their design intentions.
+
+    \item \textbf{Real-Time Performance.} Maintaining real-time frame rates and smooth rendering is crucial in VR to avoid motion sickness\footnote{VR motion sickness: a condition where users experience nausea and discomfort due to mismatches between visual and physical motion}, which severely impacts the user experience. Ensuring real-time responsiveness for shape deformations to hand input is essential for intuitive interactions.
+
+    \item \textbf{Diverse Input Modalities.} In real-world clay modeling, people combine hand manipulation with tools like ball styluses and knives for precise and controlled deformations. Supporting the use of various tools in VR, beyond just hand manipulation, would enhance efficiency and unlock more creative shape-modeling possibilities.
+    
+    \item \textbf{Adhering to established operations.} Design is an iterative process, where complex models are often composed of multiple components. An effective modeling workflow should follow established operations, including creating, moving, scaling, merging, and copying individual objects, to achieve the final design.
+    % Complex models are often composed of multiple components that balance overall structural integrity with detailed features. This hierarchical approach streamlines the workflow and maximizes resource reuse.
+    
+    \item \textbf{Intuitive Spatial Interface.} A clear and user-friendly spatial interface is critical to guide users through the modeling process and improve the overall usability of the system.
+    % An intuitive UI enables users to focus on creativity and interaction, reducing the learning curve and enhancing overall usability.
+\end{enumerate}
+Simultaneously achieving all these goals presents a significant challenge. The more accurate the simulation and rendering, the greater the demand for computational resources. Appropriate input modalities are required to enable hands to deform virtual objects in mid-air as expected. In the following sections, we will explain how we built VR-Doh, including the overall system architecture, methodologies, and the technical trade-offs and innovations we employed.

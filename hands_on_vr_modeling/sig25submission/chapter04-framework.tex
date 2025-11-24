@@ -1,0 +1,22 @@
+\section{System Framework}
+\todo{can move this section to be the first paragraph of the next section}
+\begin{figure*}[ht]
+    \centering
+    \includegraphics[width=\linewidth]{img/System.pdf}
+    \caption{System Framework}
+    \label{fig:system}
+\end{figure*}
+
+\begin{algorithm}
+\caption{Overall Framework}
+\begin{algorithmic}[1]
+\While{True}
+    \State Update Input()
+    \For{$i \gets 1$ to substeps}
+        \State substep()
+    \EndFor
+    \State Update Rendering()
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+Our system integrates real-time simulation, high-quality rendering, and  flexible user interaction, supporting intuitive VR modeling. The overall system framework is shown in \autoref{fig:system}.  We use the Material Point Method (MPM) \cite{hu2018moving} for simulation, which accurately handles elastoplastic materials and large deformations. For rendering, the system offers two options: Gaussian splatting \cite{kerbl20233d}, which is used to refine reconstructed or generated 3D models, and mesh rendering, which uses the Marching Cubes algorithm \cite{lorensen1998marching} to reconstruct a mesh from the particles, allowing users to create new models from scratch. User interactions include direct hand interaction, tool-based interaction, and gesture inputs.

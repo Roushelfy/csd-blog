@@ -1,0 +1,584 @@
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{CJKutf8}
+
+%\usepackage{ulem}
+
+%% Meta info
+\newcommand{\AUTHORS}{Authors}
+\newcommand{\TITLE}{Title}
+\newcommand{\KEYWORDS}{Keywords}
+\newcommand{\CONFERENCE}{Somewhere}
+\newcommand{\COLOR}{yes}
+\newcommand{\PAGENUMBERS}{yes} 
+\newcommand{\COMMENTS}{yes}
+\let\Bbbk\relax
+%% Basics 
+\usepackage{color,balance,xspace,verbatim,ifthen,engord,unicode}
+
+%% Symbol and Math
+\let\Bbbk\relax
+\usepackage{gensymb,amsmath,wasysym,marvosym}
+\let\Bbbk\relax
+\usepackage{newtxmath}
+\let\Bbbk\relax
+\usepackage{booktabs,colortbl,diagbox,multirow,tabularx,tablefootnote} 
+\newcommand{\tabincell}[2]{\begin{tabular}{@{}#1@{}}#2\end{tabular}}
+\usepackage{dblfloatfix} % allow the table* to be place at the page bottom
+
+%% Figures
+\usepackage{caption}
+\usepackage{subcaption} % for subfigure and subtable
+\usepackage{graphicx,epsfig,epstopdf,wrapfig}
+\graphicspath{{./figures/}}
+\DeclareGraphicsExtensions{.pdf,.mps,.png,.jpg,.eps,.PNG,.JPG}
+\epstopdfsetup{outdir=./figures/}
+% [!ht]: avoid occupy the whole page
+
+%% Algorithms
+\usepackage{algorithm,algpseudocode}
+\renewcommand{\algorithmicrequire}{\textbf{Input:}} %Use Input in the format of Algorithm
+\renewcommand{\algorithmicensure}{\textbf{Output:}}
+
+
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%% Url
+\usepackage{url}
+\def\UrlBreaks{\do\A\do\B\do\C\do\D\do\E\do\F\do\G\do\H\do\I\do\J\do\K\do\L\do\M\do\N\do\O\do\P\do\Q\do\R\do\S\do\T\do\U\do\V\do\W\do\X\do\Y\do\Z\do\[\do\\\do\]\do\^\do\_\do\`\do\a\do\b\do\c\do\d\do\e\do\f\do\g\do\h\do\i\do\j\do\k\do\l\do\m\do\n\do\o\do\p\do\q\do\r\do\s\do\t\do\u\do\v\do\w\do\x\do\y\do\z\do\0\do\1\do\2\do\3\do\4\do\5\do\6\do\7\do\8\do\9\do\.\do\@\do\\\do\/\do\!\do\_\do\|\do\;\do\>\do\]\do\)\do\,\do\?\do\'\do+\do\=\do\#}%
+
+
+\usepackage{pdfpages}
+
+%% Cross reference
+\newcommand{\secref}[1]{\S\ref{#1}}
+\newcommand{\figref}[1]{Fig.~\ref{#1}}
+\newcommand{\tabref}[1]{Tab.~\ref{#1}}
+\newcommand{\eqnref}[1]{Eqn.~\ref{#1}}
+%\newcommand{\algref}[1]{Alg.~\ref{#1}}
+
+%% Caption with tigher before and after vertical space
+\newcommand{\figcaption}[1]{\vspace{-8mm}\caption{#1}\vspace{-4mm}} 
+\newcommand{\mfigcaption}[1]{\vspace{-4mm}\caption{#1}\vspace{-2mm}} 
+\newcommand{\tabcaption}[1]{\vspace{1mm}\caption{#1}\vspace{-8mm}}
+\newcommand{\mtabcaption}[1]{\vspace{-3mm}\caption{#1}\vspace{-8mm}}
+
+%% Numbers in circles
+\usepackage{tikz}
+\newcommand{\WoB}[1]{{\small \tikz[baseline=(char.base)]{\node[shape=circle,fill=black,draw,inner sep=0.5pt] (char) {\color{white}#1};}}} % used in text
+% used on caption or as fallback plan if tikz is not supported
+\newcommand{\sWoB}[1]{$\rlap{\Large{\CIRCLE}}{{\color{white}{\footnotesize \raisebox{0.7 pt}{\hspace{3.3pt}#1}}}}$~} % used in caption
+\newcommand{\dWoB}[1]{$\rlap{\Large{\CIRCLE}}{{\color{white}{\scriptsize \raisebox{1 pt}{~#1}}}}$~}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{\node[shape=circle,draw,inner sep=0.5pt] (char) {#1};}}
+%\newcommand{\circled}[1]{\textcircled{\small{#1}}} 
+
+%% Math symbol optimization
+\newcommand{\superscript}[1]{\ensuremath{^{\textrm{#1}}}}
+\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+\def\deg{{\,^{\circ}}\xspace}
+
+%% Supplemental heading
+\newcommand{\nosection}[1]{\vspace{3pt}\noindent\textbf{#1}}
+\newcommand{\nosubsection}[1]{\vspace{3pt}\noindent$\bullet$\hspace{1mm}\textit{#1}}
+\newcommand{\heading}[1]{\vspace{3pt}\noindent\textup{\textbf{#1}}}
+\newcommand{\blpara}{\vspace{3pt}\noindent$\bullet$\hspace{1mm}} % +.02in or 0.05
+\newcommand{\blnosection}[1]{\vspace{3pt}\noindent$\bullet$\hspace{1mm}{#1}}
+\newcommand{\blheading}[1]{\vspace{3pt}\noindent$\bullet$\hspace{1mm}\textup{\textbf{#1}}}
+\def\newpara{\vspace{3pt}\noindent}
+
+%% Abbreviation optimization
+\def\It{\textit}
+\def\Bf{\textbf}
+\def\eg{\textit{e.g.,}\hspace{1mm}}
+\def\ie{\textit{i.e.,}\hspace{1mm}}
+\def\etal{\textit{et al.}\hspace{1mm}}
+\def\etc{\textit{etc.}\hspace{1mm}}
+
+%% font wrapper
+\usepackage{courier} % produce real \texttt
+\newcommand{\code}[1]{\mbox{\texttt{#1}}}
+\newcommand{\Mod}[1]{\mbox{\textsf{#1}}} % \textup \textsl \texttt \textsf \textrm
+\newcommand{\sw}[1]{\mbox{\textsc{#1}}}
+%https://www.sharelatex.com/learn/Code_listing
+
+\usepackage{enumitem}
+
+%% Compact environments
+\newenvironment{Itemize}{
+	\begin{list}{$\bullet$} {
+			\setlength{\itemsep}{0pt}
+			\setlength{\parsep}{2pt}
+			\setlength{\topsep}{2pt}
+			\setlength{\partopsep}{0pt}
+			\setlength{\leftmargin}{1.5em} % 1.5
+			\setlength{\labelwidth}{1em} % 1
+			\setlength{\labelsep}{0.5em} % 0.5
+	}}
+	{\end{list}}	
+
+\newenvironment{Enumerate}{
+	\begin{enumerate}[leftmargin=2em]
+		\setlength{\itemsep}{2pt}
+		\setlength{\topsep}{2pt}
+		\setlength{\partopsep}{0pt}
+		\setlength{\parskip}{0pt}}
+	{\end{enumerate}}
+
+\newenvironment{Circled}{
+	\begin{enumerate}[label=\protect\circled{\arabic*},leftmargin=2em]
+		\setlength{\itemsep}{3pt}
+		\setlength{\topsep}{0pt}
+		\setlength{\partopsep}{0pt}
+		\setlength{\parskip}{0pt}}
+	{\end{enumerate}}
+
+%% Paper revising
+\ifthenelse{\equal{\COMMENTS}{yes}}{
+	%% Writing Mode 
+	\newcommand{\todo}[1]{\textcolor{red}{\textbf{TODO:} #1}}
+        \newcommand{\mc}[1]{\textcolor{cyan}{\textbf{Minchen:} #1}}
+        \newcommand{\cmy}[1]{\textcolor{purple}{\textbf{Mengyu:} #1}}
+        \newcommand{\lzf}[1]{\textcolor{green}{\textbf{Zhaofeng:} #1}}
+	\newcommand{\fyi}[1]{\textcolor{blue}{#1}} %content will be included
+	\newcommand{\fye}[1]{\textcolor{red}{#1}}  %content will be excluded
+	\newcommand{\remind}[1]{\footnote{\textit{\textcolor{red}{\textbf{Remind:} #1}}}}
+	\newcommand{\repl}[2]{\textcolor{red}{#1}\textcolor{blue}{\sout{#2}}} % replacement
+	\newcommand{\add}[1]{\textcolor{red}{#1}}
+	\newcommand{\del}[1]{\color{blue} {\sout{#1}}}
+	%\newcommand{\p}[1]{\noindent\parbox{\columnwidth}{\textcolor{magenta}{\textbf{Point to make:} #1}}\vskip 0.5ex}
+	\newcommand{\p}[1]{\vskip 1ex \noindent\colorbox{yellow}{\parbox{\columnwidth}{#1}}\vskip 4pt}
+	\newcommand{\note}[1]{\vskip 4ex \noindent\colorbox{yellow}{\parbox{\columnwidth}{#1}}\vskip 6ex} % highlight
+	\newcommand{\dc}[1]{\textcolor{red}{\underline{#1}}} % double check % \uwave
+	\newcommand{\q}[1]{\vskip 1ex \noindent\colorbox{magenta}{\parbox{\columnwidth}{\textbf{Question:} #1}}\vskip 4pt} 
+	\newcommand{\qa}[1]{\hl{\textbf{Answer:} #1}}
+	%\newcommand{\qa}[1]{\noindent\colorbox{yellow}{\parbox{\columnwidth}{\textbf{Answer:} #1}}\vskip 2ex} % highlight
+}{
+	%%Submission Mode
+	\newcommand{\todo}[1]{}
+	\newcommand{\fyi}[1]{#1}
+	\newcommand{\fye}[1]{}
+	\newcommand{\remind}[1]{}
+	\newcommand{\repl}[2]{#1}
+	\newcommand{\add}[1]{#1}
+	\newcommand{\del}[1]{}
+	\newcommand{\p}[1]{}
+	\newcommand{\note}[1]{}
+	\newcommand{\dc}[1]{#1}	% Conditional setup for PDF options
+\newif\ifnotnewacm % Define the conditional
+\notnewacmtrue % Set the conditional to true or false as needed
+
+\newif\ifheadnice % Define the conditional
+\headnicetrue % Set it to true or false as needed
+	\newcommand{\qm}[1]{#1}
+	\newcommand{\q}[1]{}
+	\newcommand{\qa}[1]{}	
+} 
+% Conditional setup for PDF options
+\newif\ifnotnewacm % Define the conditional
+\notnewacmtrue % Set the conditional to true or false as needed
+
+\newif\ifheadnice % Define the conditional
+\headnicetrue % Set it to true or false as needed
+%% PDF setup
+% \ifnotnewacm
+% \ifthenelse{\equal{\COLOR}{yes}}
+% {\usepackage[colorlinks]{hyperref}} 		% for colored version 
+% {\usepackage[pdfborder={0 0 0}]{hyperref}} 	% for B&W version
+% \hypersetup{
+% 	plainpages=false,
+% 	filecolor=cyan,
+% 	linkcolor=red,
+% 	citecolor=blue,	
+% 	urlcolor=magenta,
+% 	pdfauthor={\AUTHORS},
+% 	pdftitle={\TITLE},
+% 	pdfsubject={\CONFERENCE},
+% 	pdfkeywords={\KEYWORDS},
+% 	bookmarksopen = {true}	
+% }
+% \else
+% \fi
+
+\ifheadnice
+\makeatletter
+%\@startsection {NAME}{LEVEL}{INDENT}{BEFORESKIP}{AFTERSKIP}{STYLE}
+\renewcommand{\section}{\@startsection{section}{1}{\z@}{-.8ex \@plus -.4ex \@minus -.4ex}{.8ex \@plus .4ex \@minus .4ex}{\normalfont\large\bfseries\MakeTextUppercase}} 
+% \normalfont\Large\scshape\bfseries 
+\renewcommand{\subsection}{\@startsection{subsection}{2}{\z@}{-.8ex\@plus -.2ex \@minus -.2ex}{.4ex \@plus .2ex \@minus .2ex}{\normalfont\large\rmfamily\bfseries}} 
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{2}{\z@}{-.4ex\@plus -.2ex \@minus -.2ex}{.2ex \@plus .2ex \@minus .2ex}{\normalfont\large\slshape}}
+
+%\def\section{\@startsection {section}{1}{\z@}{-.8ex \@plus -.4ex \@minus -.4ex}{.8ex \@plus .4ex \@minus .4ex}{\reset@font\large\bf}}
+%\def\subsection{\@startsection{subsection}{2}{\z@}{-.8ex\@plus -.2ex \@minus -.2ex}{.4ex \@plus .2ex \@minus .2ex}{\reset@font\normalsize\bf}} 
+%\def\subsubsection{\@startsection{subsubsection}{2}{\z@}{-.8ex\@plus -.2ex \@minus -.2ex}{.4ex \@plus .2ex \@minus .2ex}{\reset@font\normalsize\bf}}
+
+% \normalfont \sffamily \rmfamily \ttfamily
+% \slshape  \itshape \scshape \upshape 
+% \bfseries \mdseries \lfseries
+% https://en.wikibooks.org/wiki/LaTeX/Fonts
+\makeatother
+\else
+\fi
+
+%% Cheating sheet
+\begin{comment}
+
+%% font size
+%  \tiny, \scriptsize, \footnotesize, \small, \normalsize, \large, \Large, \LARGE, \huge, \Huge
+
+%% Alignment
+%  flushleft, center, flushright
+
+%% List
+%  itemize, enumerate, description 
+
+%% Quotation
+%  quote, quotation, verse, verbatim
+
+%% line break
+%  \\, \\*(avoid new page), \newpage, \linebreak[n], \nolinebreak[n], \pagebreak[n], \nopagebreak[n], \sloppy, \fussy (default)
+
+%% dash
+%  -, --, ---
+
+%% tilde
+%  \~, $\sim$
+
+%% ellipsis
+%  \ldots
+
+%% degree: $-30\,^{\circ}\mathrm{C}$
+
+%% \paragraph, \subparagraph{}
+
+%% font
+\textrm{...} roman 
+\textsf{...} sans serif
+\texttt{...} typewriter
+\textmd{...} medium 
+\textbf{...} bold face
+\textup{...} upright 
+\textit{...} italic
+\textsl{...} slanted 
+\textsc{...} Small Caps
+\textnormal{...} document font
+\end{comment}
+
+%% TBD
+\begin{comment}
+
+%% Fonts
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+%\usepackage{newtxtext,newtxmath}	% Times/Times-like math symbols
+\usepackage{bm}						% bold math; use \bm{} in captions
+\usepackage{helvet}					% [scaled=0.92]
+\usepackage{courier}
+\usepackage{beramono}    			% [scaled=0.83]: more compact, good for code
+
+%\usepackage{floatrow}
+% Table float box with bottom caption, box width adjusted to content
+%\newfloatcommand{capbtabbox}{table}[][\FBwidth]
+\usepackage{blindtext}
+\end{comment}
+
+
+%% Figure template
+\begin{comment}
+
+\begin{figure*}%[!ht]
+\begin{minipage}{.65\linewidth}
+\centering
+\begin{subfigure}{0.495\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Internet Throughput}
+\label{fig:bm_throughtput_internet}
+\end{subfigure}%
+\hspace{1pt}
+\begin{subfigure}{0.495\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Wireless Throughput}
+\label{fig:bm_throughput_wireless}
+\end{subfigure}%
+\figcaption{Benchmark.}
+\label{fig:bm}
+\end{minipage}
+\begin{minipage}{.34\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{Migration}
+\label{fig:migration}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}[!]
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Chunk size}
+\label{fig:csize}
+\end{subfigure}
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Encounter time}
+\label{fig:encounter}
+\end{subfigure}
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Disconnection time}
+\label{fig:disconn}
+\end{subfigure}
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Packet loss rate}
+\label{fig:plr}
+\end{subfigure}
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Wireless bandwidth}
+\label{fig:wireless_bw}
+\end{subfigure}
+\begin{subfigure}{0.33\linewidth}
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Internet latency}
+\label{fig:latency}
+\end{subfigure}
+\figcaption{Performance gain under different environmental parameters.}
+\label{fig:para}
+\end{figure*}
+
+\begin{figure*}[!]
+\begin{minipage}[b]{.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Stage policy.}
+\label{fig:migration}
+\end{minipage}
+\begin{minipage}[b]{.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Handoff policy.}
+\label{fig:migration}
+\end{minipage}
+\begin{minipage}[b]{.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\caption{Roam policy.}
+\label{fig:migration}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}
+\begin{minipage}[b]{0.246\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\begin{minipage}[b]{0.246\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}	
+\begin{minipage}[b]{0.246\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\begin{minipage}[b]{0.246\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\end{figure*}
+
+\begin{figure*}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}	
+\begin{minipage}[b]{0.33\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\end{figure*}
+
+\begin{figure}
+\begin{minipage}[b]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}
+\begin{minipage}[b]{0.495\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}	
+\end{figure}
+
+\begin{figure*}
+\begin{minipage}[b]{0.65\linewidth}
+\centering	
+\subfigure[]{\includegraphics[width=0.49\linewidth]{ph_sd.pdf}} 
+\subfigure[]{\includegraphics[width=0.49\linewidth]{ph_sd.pdf}} 
+\figcaption{***.}
+\label{fig:**}
+\end{minipage}
+\begin{minipage}[b]{0.345\linewidth}
+\centering
+\includegraphics[width=\linewidth]{ph_sd.pdf}
+\figcaption{***.} 
+\label{fig:**}
+\end{minipage}	
+\end{figure*}
+
+% 1,1,3*1
+
+
+\end{comment}
+
+%% Table template
+\begin{comment}
+
+
+\end{comment}
+
+
+%% Chinese template
+\begin{comment}
+\documentclass[a4paper, 11pt]{article}
+
+%%%%%% 导入包 %%%%%%
+\usepackage{CJKutf8}
+\usepackage{graphicx}
+\usepackage[unicode]{hyperref}
+\usepackage{xcolor}
+\usepackage{cite}
+\usepackage{indentfirst}
+
+%%%%%% 设置字号 %%%%%%
+\newcommand{\chuhao}{\fontsize{42pt}{\baselineskip}\selectfont}
+\newcommand{\xiaochuhao}{\fontsize{36pt}{\baselineskip}\selectfont}
+\newcommand{\yihao}{\fontsize{28pt}{\baselineskip}\selectfont}
+\newcommand{\erhao}{\fontsize{21pt}{\baselineskip}\selectfont}
+\newcommand{\xiaoerhao}{\fontsize{18pt}{\baselineskip}\selectfont}
+\newcommand{\sanhao}{\fontsize{15.75pt}{\baselineskip}\selectfont}
+\newcommand{\sihao}{\fontsize{14pt}{\baselineskip}\selectfont}
+\newcommand{\xiaosihao}{\fontsize{12pt}{\baselineskip}\selectfont}
+\newcommand{\wuhao}{\fontsize{10.5pt}{\baselineskip}\selectfont}
+\newcommand{\xiaowuhao}{\fontsize{9pt}{\baselineskip}\selectfont}
+\newcommand{\liuhao}{\fontsize{7.875pt}{\baselineskip}\selectfont}
+\newcommand{\qihao}{\fontsize{5.25pt}{\baselineskip}\selectfont}
+
+%%%% 设置属性 %%%%
+\makeatletter
+\renewcommand\section{\@startsection{section}{1}{\z@}%
+{-1.5ex \@plus -.5ex \@minus -.2ex}%
+{.5ex \@plus .1ex}%
+{\normalfont\sihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsection 属性 %%%%
+\makeatletter
+\renewcommand\subsection{\@startsection{subsection}{1}{\z@}%
+{-1.25ex \@plus -.5ex \@minus -.2ex}%
+{.4ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 设置 subsubsection 属性 %%%%
+\makeatletter
+\renewcommand\subsubsection{\@startsection{subsubsection}{1}{\z@}%
+{-1ex \@plus -.5ex \@minus -.2ex}%
+{.3ex \@plus .1ex}%
+{\normalfont\xiaosihao\CJKfamily{hei}}}
+\makeatother
+
+%%%% 段落首行缩进两个字 %%%%
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\makeatother
+\setlength{\parindent}{2em}  %中文缩进两个汉字位
+
+
+%%%% 下面的命令重定义页面边距，使其符合中文刊物习惯 %%%%
+\addtolength{\topmargin}{-54pt}
+\setlength{\oddsidemargin}{0.63cm}  % 3.17cm - 1 inch
+\setlength{\evensidemargin}{\oddsidemargin}
+\setlength{\textwidth}{14.66cm}
+\setlength{\textheight}{24.00cm}    % 24.62
+
+%%%% 下面的命令设置行间距与段落间距 %%%%
+\linespread{1.4}
+% \setlength{\parskip}{1ex}
+\setlength{\parskip}{0.5\baselineskip}
+
+%%%% 正文开始 %%%%
+\begin{document}
+\begin{CJK}{UTF8}{gbsn}
+
+%%%% 定理类环境的定义 %%%%
+\newtheorem{example}{例}             % 整体编号
+\newtheorem{algorithm}{算法}
+\newtheorem{theorem}{定理}[section]  % 按 section 编号
+\newtheorem{definition}{定义}
+\newtheorem{axiom}{公理}
+\newtheorem{property}{性质}
+\newtheorem{proposition}{命题}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}
+\newtheorem{remark}{注解}
+\newtheorem{condition}{条件}
+\newtheorem{conclusion}{结论}
+\newtheorem{assumption}{假设}
+
+%%%% 重定义 %%%%
+\renewcommand{\contentsname}{目录}  % 将Contents改为目录
+\renewcommand{\abstractname}{摘要}  % 将Abstract改为摘要
+\renewcommand{\refname}{参考文献}   % 将References改为参考文献
+\renewcommand{\indexname}{索引}
+\renewcommand{\figurename}{图}
+\renewcommand{\tablename}{表}
+\renewcommand{\appendixname}{附录}
+\renewcommand{\algorithm}{算法}
+
+
+%%%% 定义标题格式，包括title，author，affiliation，email等 %%%%
+\title{***}
+\author{***footnote{电子邮件:**}\\[2ex]
+*** \\[2ex]
+}
+\date{20XX年X月}
+
+
+%%%% 以下部分是正文 %%%%  
+\maketitle
+
+\tableofcontents
+\newpage
+在此输入正文，中英文均可。
+
+\songti 
+\fangsong 
+\biaosong
+\heiti
+\kaishu
+
+\end{CJK}
+\end{document}
+\end{comment}

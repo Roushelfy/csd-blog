@@ -1,0 +1,200 @@
+\section{Method} \label{sec:method}
+
+Our system, built on PhysGaussian~\cite{xie2024physgaussian}, integrates intuitive user interactions, real-time simulation, and high-quality rendering to enable hands-on 3D modeling in VR. PhysGaussian combines the Moving Least Squares (MLS) Material Point Method (MPM)~\cite{hu2018moving} and 3D Gaussian Splatting~\cite{kerbl20233d} for elastoplastic simulation and photorealistic rendering. The technical background of these foundational methods is provided in our supplemental document. However, directly applying these techniques does not fully address the challenges of enabling real-time performance, intuitive usability, and dynamic updates in our system. To overcome these limitations, we introduce key innovations, including particle-level collision handling and localized simulations for efficient and accurate modeling (\autoref{sec:simulation}), as well as decoupled appearance and physical representations and uniform Gaussian volume regularization for enhanced rendering (\autoref{sec:rendering}). These innovations, combined with natural interaction modes such as contact- and gesture-based inputs that mimic real-world actions (\autoref{sec:input}), make VR-Doh both accessible to novice users and powerful for detailed modeling tasks. \autoref{fig:system} and Algorithm~\ref{alg:pipeline} provide an overview of the system framework.
+
+\begin{figure*}[!h]
+    \centering
+    \includegraphics[width=0.8\linewidth]{img/Technical_Framework.pdf}
+    
+    \caption{  \textbf{VR-Doh Pipeline.} Our interactive system enables hands-on 3D modeling in VR through contact- and gesture-based inputs. The pipeline integrates MPM to simulate realistic elastoplastic deformations and supports rendering using both 3D Gaussian Splatting and meshes, ensuring broad applicability across creative and practical modeling tasks.}
+    \label{fig:system}
+\end{figure*}
+
+\begin{algorithm}\small
+\caption{VR-Doh Pipeline}\label{alg:pipeline}
+\begin{algorithmic}[1]
+\While{True}
+    \State Update\_Input() \Comment{\autoref{sec:input}}
+    \For{each substep}
+        \State Sim\_substep()\Comment{Supp. Doc. and \autoref{sec:simulation}}
+    \EndFor
+    \State Update\_Rendering()\Comment{\autoref{sec:rendering}}
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+
+% Our system integrates intuitive user interactions, real-time simulation, and high-quality rendering to enable hands-on 3D modeling in VR (see \autoref{fig:system} and Algorithm~\autoref{alg:pipeline} for an overview). It supports natural interaction modes, including both contact- and gesture-based inputs, designed to mimic real-world actions and reduce the learning curve (\autoref{sec:input}). For simulation, we leverage the MLS-MPM~\cite{hu2018moving} to realistically simulate elastoplastic deformations, introducing innovations like particle-level collision handling and localized simulations to address computational challenges (\autoref{sec:simulation}). For rendering, the system uses 3D Gaussian Splatting~\cite{kerbl20233d} for high visual fidelity and mesh rendering for creating new models, both adapted to ensure dynamic updates and consistency during shape editing (\autoref{sec:rendering}).
+
+
+
+% \subsection{User Interaction}
+\subsection{Hand-based User Interaction}\label{sec:input} 
+
+% \begin{algorithm}
+% \caption{Update\_Input()\todo{remove?}}
+% \begin{algorithmic}[1]
+% \State Get\_Joint\_Positions()
+% \State Compute\_Fields(SDF, Normal, Velocity)
+% \State Get\_Gesture\_Input()
+% \State Compute\_Force\_Field()
+% \end{algorithmic}
+% \end{algorithm}
+
+% To empower users to create or modify 3D models while aligning more effectively with their design intention, we support two complementary input approaches, i.e., \textit{contact-based} and \textit{mid-air gestural modeling}. The former modifies the shape of an object through direct contact using the hand or tools, while the latter alters the shape by selecting and manipulating a part of the object using pinch gestures. 
+
+\paragraph{Contact-based Modeling}
+To enable efficient contact handling for interactive feedback, we approximate the geometry of hands and integrated deformation tools using the medial axis transform (MAT) \cite{faraj2013progressive, stolpner2011medial}. The medial axis of a 3D model consists of points that are centers of maximally inscribed spheres. By incorporating radius information along the medial axis, the MAT can reconstruct the original geometry. MAT can be discretized as a small number of linearly interpolated spheres or medial primitives while precisely describing the shape. These medial primitives are classified as either medial cones or slabs~\cite{sun2015medial}, defined by two or three vertices on the medial axis. In our implementation, we use the quadratic error metric \cite{li2015q} to compute the medial mesh of hands and tools. Specifically, a hand can be approximated by 76 medial cones and 28 medial slabs (Figure~\ref{fig:mat_hand}). For collision handling during simulation, we adopt the method from Medial IPC~\cite{lan2021medial} to calculate distances between MPM grid nodes and medial primitives representing hands or tools. Additionally, we employ the bounding boxes of medial primitives to construct a spatial hash data structure, enabling efficient collision detection.
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/MAT_Hand.jpg}
+    \captionof{figure}{  \textbf{Medial axis approximation of hand geometry.} The highlighted curves indicate the boundaries of a specific medial slab and a medial cone.}
+    \label{fig:mat_hand}
+    \label{fig:Improved_gaussian}
+\end{figure}
+Beyond direct hand manipulation, we provide auxiliary modeling tools such as a planar slab, a rod, and scissors (Figure~\ref{fig:Featured_Operations}) to support diverse and controlled deformations, mimicking creative processes observed in the real world. Upon selection, each tool attaches to a hand joint, allowing users to control it through hand movements. Each hand operates independently, enabling seamless transitions between different tools. During hand tracking, the position and orientation of each medial primitive are determined by the nearest joints of the hand skeleton. To enhance tracking stability, we apply a moving average kernel to the data from the past 0.2 seconds, with weights determined by frame duration. This ensures consistent and reliable hand-tracking performance across varying frame rates.
+
+Overall, our efficient contact handling techniques enable interactive modeling operations on deformable objects, such as pinching, squeezing, and folding, while avoiding noticeable visual artifacts. We use the hand texture from \citet{Pohl2022Hands} for rendering.
+
+
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=\linewidth]{img/mat_tools.pdf}
+%     \caption{\textbf{Tools supported in VR-Doh:} planar slab, rod, scissors, and cone, supporting diverse and precise deformations.}
+%     \label{fig:mat_tools}
+% \end{figure}
+
+\paragraph{Mid-air Gestural Modeling}
+Mid-air gestural input is advantageous when users face difficulties selecting the desired editing area on an object using contact-based modeling, which helps to avoid unintended changes to the object. We provide a mid-air pinch gesture (where the tip of the thumb touches the tip of the middle finger), enabling users to perform operations such as stretching or twisting materials by applying a force field to selected MPM particles. A green highlight is used to visualize the selection area and the applied force field, providing intuitive visual feedback. Users can further refine the radius of the selection area and adjust the force magnitude for more precise control, as shown in \autoref{fig:Featured_Operations}.
+
+\paragraph{Other Operations}
+Our user interface provides a range of common operations to enhance usability and ensure smooth modeling workflows. Objects in the scene can be \textit{selected} and \textit{moved} by grabbing their bounding boxes with the hands or by using a ray-casting gesture to intersect the bounding box. \textit{Scaling} operations are performed by grasping the object’s bounding box with both hands and moving them outward or inward, visually scaling the object up or down without altering its physical size. This zooming functionality enables seamless transitions between fine-grained local editing and broader global shaping.
+To create new objects, users can \textit{load} built-in primitive shapes, such as spheres, tori, or cubes, or utilize a \textit{sourcing} tool that extrudes geometry with customizable cross section (e.g., circles, squares, or stars). The extrusion process dynamically samples MPM particles, with the direction and speed controlled by hand movements.
+Additionally, the system integrates commonly used operations in 3D modeling tools, such as \textit{Merge}, \textit{Copy}, \textit{Reset}, and \textit{Delete}, allowing users to efficiently manipulate modeled objects.
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\linewidth]{img/Featured_Operations.pdf}
+    
+    \captionof{figure}{  \textbf{Featured Operations:} (a) Pinching and reshaping with fingers; (b) Using a sourcing tool to extrude new materials onto an object; (c) Mid-air gestures for bending and twisting objects; (d) Hand-based cutting of objects; (e) (f) Tool-based operations with a slab and a rod; .}
+    \label{fig:Featured_Operations}
+\end{figure}
+
+
+
+\subsection{Simulation}\label{sec:simulation}
+
+% \paragraph{MLS-MPM Implementation}
+%  We implement the coupling and simulation of multi-material objects based on the MLS-MPM approach \cite{hu2018moving}. First, we transfer the particles’ mass and velocity onto the grid nodes as follows:
+
+% \begin{equation}
+% m^n_i = \sum_p w_{i,p} m_p, \tag{1}
+% \end{equation}
+% \begin{equation}
+% (mv)^n_i = \sum_p w_{i,p} \{ m_p v_p +[m_p C^n_p - E^n_p ] \left( x_i - x^n_p \right)\}, \tag{2}
+% \end{equation}
+
+% The elastic term \( E \) is calculated as follows:
+
+% \begin{equation}
+% E^n_p = - \frac{4 \Delta t}{\Delta x^2} \sum_p V_0 P^n_p \left( F^n_p \right)^T, \tag{3}
+% \end{equation}
+% \begin{equation}
+% P^n_p = 2 \mu \left( F^n_p - UW \right) + \lambda \left( J^n_p - 1 \right) J^n_p \left( F^n_p \right)^{-T}, \tag{4}
+% \end{equation}
+% \begin{equation}
+% F^{n+1}_p = \left( I + \Delta t C^n_p \right) F^n_p, \tag{5}
+% \end{equation}
+% where \( \mu \) and \( \lambda \) are the Lamé constants, representing the material’s shear and compressibility, respectively. \( W \) and \( U \) are obtained through the singular value decomposition \( F = U \Sigma W \).
+
+% During particle advection, each particle updates its velocity \( v \) and affine transformation matrix \( C \) based on neighboring cell velocities, which subsequently alters its position. The advection equations are as follows:
+
+% \begin{equation}
+% v^{n+1}_p = \sum_p w_{i,p} v^{n+1}_i, \tag{6}
+% \end{equation}
+% \begin{equation}
+% C^{n+1}_p = \frac{\Delta t}{\Delta x^2} \sum_p w_{i,p} v^{n+1}_i \left( x_i - x^n_p \right)^T, \tag{7}
+% \end{equation}
+% \begin{equation}
+% x^{n+1}_p = x^n_p + \Delta t v^{n+1}_i. \tag{8}
+% \end{equation}
+% Our system leverages MLS-MPM, as detailed in Algorithm \ref{alg:mpm} and the supplemental document, to simulate elastoplastic deformations of modeled objects. 
+% In this subsection, we provide details of our two key enhancements of MPM to achieve the accuracy and real-time performance required for interactive modeling.
+% However, straightforward implementations face challenges in achieving the accuracy and real-time performance required for interactive modeling. To overcome these limitations, we introduce two key enhancements: (1) \textit{Particle-Level Collision Handling}, which ensures particles remain outside the hands and tools by correcting their positions and velocities; and (2) \textit{Localized Simulation}, which dynamically restricts computations to regions of user interaction, significantly improving computational efficiency while maintaining responsiveness.
+
+\begin{algorithm}[htb]\small
+\caption{Sim\_substep() \ \ \textit{(More details in our supp. doc.)}}
+\label{alg:mpm}
+\begin{algorithmic}[1]
+\State Particle\_to\_Grid()
+\State Update\_Grid\_Velocity()
+\State Grid\_to\_Particle()
+\State Particle\_Projection() \Comment{\autoref{sec:simulation}}
+\State Apply\_Plasticity()
+\end{algorithmic}
+\label{alg:mpm}
+\end{algorithm}
+
+\paragraph{Particle-Level Collision Handling}
+Due to the limited resolution of the simulation grid, MPM particles can penetrate the boundaries of passive objects, such as hands and tools, despite applying grid-based boundary conditions. Increasing grid resolution to fully resolve these geometries is computationally expensive and impractical. To address this issue, we introduce a particle-level collision handling step that operates independently of grid resolution.
+
+For particles that remain inside passive objects after their states are updated using grid information in the \texttt{\small Grid\_To\_Particle} step, we project them out and adjust their velocities:
+\begin{equation}
+\begin{aligned}
+\mathbf{x}_p = \mathbf{x}_p + \mathbf{p}_p, ~~~~\text{and}~~~~ \mathbf{v}_p = \mathbf{v}_{\text{boundary}}, 
+\end{aligned}
+\end{equation}
+where $\mathbf{p}_p$ is the vector connecting the particle position $\mathbf{x}_p$ to the closest point on the boundary, and $\mathbf{v}_{\text{boundary}}$ is the velocity of this closest point. This step ensures particles remain outside the passive objects and conform to their surface geometry, enabling accurate hand-object interactions even at moderate grid resolutions.
+
+\paragraph{Localized Simulation}
+While MPM is effective for large deformations, real-time simulation is constrained by typical hardware capabilities, supporting approximately 100K particles. However, large-scale Gaussian splatting scenes often contain over 500K particles, making full-scene simulation infeasible in real time. To address this, we propose a localized simulation approach tailored to user interactions. Since the primary input comes from hand tracking, our system confines the simulation to a cubic region centered around the user’s hands, leaving particles outside this region stationary. This approach significantly reduces computational costs, enabling higher frame rates without 
+compromising user experience. 
+% The simulation region dynamically follows hand movements, ensuring that all interactable areas remain fully responsive and interactive.
+
+
+
+
+
+\subsection{Rendering}\label{sec:rendering}
+
+% \begin{algorithm}
+% \caption{Update\_Rendering()}
+% \begin{algorithmic}[1]
+% \If{Using\_Gaussian\_Splatting}
+%     \State Update\_Gaussian\_Data()
+% \ElsIf{Using\_Marching\_Cubes}
+%     \State Update\_Marching\_Cubes\_Data()
+% \EndIf
+% \end{algorithmic}
+% \end{algorithm}
+% Our system integrates 3D GS and mesh rendering to ensure high visual fidelity and flexibility in 3D modeling. To address challenges such as blurry artifacts from large deformations and the high computational demands of simulation and rendering, we introduce two key enhancements: (1) \textit{Uniform Gaussian Volume Regularization}, which mitigates volume discrepancies among Gaussians to preserve consistent visual quality even during significant deformations; and (2) \textit{Decoupled Appearance and Physical Representations}, which improves computational efficiency by enabling a smaller number of MPM particles to drive a larger number of Gaussians.
+
+\paragraph{Uniform Gaussian Volume Regularization}
+The original 3D Gaussian Splatting (GS) method captures fine details only on the surface of objects, while the interior is typically empty or filled with a small number of large Gaussians. While this approach is sufficient for static objects, large deformations can expose the interior, leading to blurry rendering artifacts. 
+PhysGaussian~\cite{xie2024physgaussian} attempts to address this by sampling additional Gaussians inside the object and assigning them the color of the closest surface Gaussian. However, this strategy can still result in blurry visuals in the interior during significant deformations.
+
+To tackle this issue, we introduce a loss function during the training of 3D GS to penalize large volume differences of Gaussians:
+\begin{equation}
+L_{\text{vol\_ratio}} = \max \left( \frac{\text{mean}(V_{\text{top,} \alpha})}{\text{mean}(V_{\text{bottom,} \alpha})}, r \right) - r,
+\end{equation}
+where $V$ represents the average volume of the top $\alpha$ percent of Gaussians with the largest or smallest volumes, and $r$ is the target maximum allowable volume ratio. In practice, we find that setting $r = 2$ and $\alpha = 30\%$ yields effective results. This loss encourages Gaussians to have more uniform volumes, reducing the likelihood of blurry artifacts and ensuring consistent visual fidelity even under large deformations.
+
+
+\paragraph{Decoupled Appearance and Physical Representations}
+In \citet{xie2024physgaussian}, each Gaussian is treated as an MPM particle. To accurately render complex appearances, the density of Gaussians is typically much higher than the precision required by MPM for simulating elastoplastic deformations in the context of 3D modeling. To address this mismatch, we decouple MPM particles for simulation from Gaussian kernels used for rendering. A smaller number of MPM particles drive a larger number of Gaussians through the MPM grid, maintaining rendering accuracy while significantly improving simulation efficiency.
+Specifically, during each simulation substep, MPM particles execute the full \texttt{\small Sim\_Substep} first. Subsequently, Gaussian kernels use the grid velocity information from the MPM simulation to perform \texttt{\small Grid\_to\_Particle}, \texttt{\small Particle\_Projection}, and \texttt{\small Apply\_Plasticity}. These steps are fully parallelizable and account for only a small portion of the total computational cost in a typical MPM simulation. This decoupling strategy optimizes computational efficiency without compromising visual fidelity, ensuring a seamless balance between simulation and rendering.
+
+
+\paragraph{Mesh Rendering}
+In addition to supporting the editing of 3D objects represented by Gaussian splatting, our system allows users to create models from scratch by reconstructing surface meshes from MPM particles using the Marching Cubes algorithm. Specifically, we compute the density field of the modeled objects by transferring particle mass onto a uniform grid during the \texttt{\small Particle\_to\_Grid} step and extract an isosurface to construct the mesh. This grid is independent of the simulation grid, following the decoupled appearance and physical representations. To improve surface quality, Laplacian smoothing is applied to the resulting mesh.
+% 
+% However, during the modeling process, 
+The original Marching Cubes algorithm may create unwanted connections or "sticking" between regions of different objects that are in close proximity. To address this, a "category" attribute is assigned to each particle. During the \texttt{\small Particle\_to\_Grid} transfer, separate density fields are maintained for each particle category. The Marching Cubes algorithm is then applied independently to each density field, ensuring that each category is reconstructed as an independent mesh and rendered separately.
+
+ 
+
+\subsection{System Implementation}
+
+We developed our system using Unity, integrating 3D Gaussian Splatting and Marching Cubes techniques. For the simulation component, we utilized Taichi \cite{hu2019taichi} as the compilation engine, which is well-suited for developing high-performance physics-based simulators. The simulation code was compiled into binary files and imported into Unity, where it was executed via C\# bindings.
+For experiments, the system ran on a 16-core 4.3GHz AMD Ryzen 9 9950X machine with an Nvidia RTX 4090 GPU, paired with a Meta Quest 3 VR headset featuring hand-tracking functionality as the display and user input device. This setup enabled efficient and responsive interactions within the VR environment.
+% We will open-source our code and data upon acceptance of this paper.
