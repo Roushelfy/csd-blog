@@ -183,74 +183,71 @@ To support complete modeling workflows, VR-Doh includes standard operations:
 
 We conducted two user studies to evaluate VR-Doh's usability and effectiveness.
 
-## Study 1: Creative Exploration
+## Study 1: Usability and Effectiveness of VR-Doh
 
-We invited 12 participants---6 with 3-5 years of 3D modeling experience and 6 complete novices---to complete two tasks:
-
-1. **Editing a 3D Model**: Freely modify a pre-existing object represented by Gaussian Splatting
-2. **Creating from Scratch**: Build a new 3D model using primitive shapes
+We invited 12 participants---6 experts (P1-P6) with 3-5 years of 3D modeling experience and 6 novices (P7-P12) without prior experience---to evaluate VR-Doh through semi-structured interviews.
 
 ![User Study Results](./User_Study_Results.jpg)
 **Figure 7:** *User study outcomes showing edited 3D GS models (top row) and newly created models (bottom row) by novice and expert participants.*
 
-### Quantitative Results
+### Expert Feedback (P1-P6)
 
-Participants rated VR-Doh highly across all dimensions:
+**Most Satisfying Aspects:**
+- P1 highlighted the simplicity and enjoyment the tool brought to tasks, such as using a stick to create holes while designing strawberries, making the process feel immersive. The pinch gesture interaction using both hands was found to be very practical.
+- P2 appreciated the tool's ease of use without requiring extensive expertise, along with its high efficiency. The realistic deformation process, especially while editing the mermaid model, provided a visually engaging experience, akin to real swimming.
+- P4 noted the tool's capability to provide real-time feedback on deformation with realistic rendering, which is often time-consuming in conventional modeling software.
+- P6 valued the ability to merge objects seamlessly and highlighted the pinch gesture for shape editing without damaging surface details.
 
-| Metric | Score (out of 7) |
-|:-------|:----------------:|
-| Usefulness | 5.6 |
-| Ease of Use | 5.5 |
-| Ease of Learning | **6.0** |
-| Satisfaction | 5.9 |
+**Key Challenges Identified:**
+- P1 found that the lack of tactile feedback made it challenging to adapt to deforming objects in VR, requiring time to adapt to the new operational logic.
+- P3 and P6 identified difficulties in precisely adjusting the relative position of two merged objects using hands.
+- P4 noted that the pinch gesture lacked intuitive force control, making it hard to determine the appropriate force for different materials.
+- The absence of an undo function was mentioned as a major limitation by P3 and P6.
 
-Notably, no participants reported discomfort or motion sickness during the study.
+**Comparison with Traditional Tools:**
+- P1 noted that VR-Doh's ability to make objects soft for modeling allows for more flexible and realistic deformations compared to setting control points manually, though the manual method is more precise.
+- P2 emphasized VR-Doh's higher design efficiency, making it better suited for quickly expressing and brainstorming creative ideas and facilitating communication with other designers.
+- P5 discussed that traditional tools like 3DMax and ZBrush are mesh-based, requiring adjustments from points to lines to surfaces, while VR-Doh mirrors natural manipulation and plasticity, avoiding the need to learn internal operational logic.
 
-### Qualitative Feedback
+### Novice Feedback (P7-P12)
 
-Participants praised several aspects:
+**Most Satisfying Aspects:**
+- P7 found the intuitive operation, such as "modeling like clay," to be highly satisfactory due to its low learning curve.
+- P9 highlighted the tool's diverse and comprehensive features, including gravity-assisted functionality.
+- P10 valued the high usability of the tool, noting its support for high frame rates and smooth real-time performance.
+- P12 appreciated the realistic object rendering provided by the tool.
 
-> "Directly manipulating the shape of objects with my hand was more flexible than deforming by setting control points."
+**Usability Assessment:**
+The tool was widely regarded as user-friendly, with low learning curves and easy-to-use interfaces across all novice participants. The system offered smooth and stable interactions with high frame rates, providing a seamless experience without noticeable lags or motion sickness. In terms of realism, participants appreciated the adherence to physical rules and the overall accuracy in modeling, though some noted areas for improvement such as material diversity and surface smoothing.
 
--- P1 and P3 (Expert users)
-
-> "It feels like walking inside the strawberry."
-
--- P1, describing the rod tool for adding details
-
-> "Usually, I rarely look at the texture rendering while editing shapes because it's very inefficient in traditional software."
-
--- P4, appreciating real-time feedback
-
-> "It feels like the mermaid is really swimming in front of me."
-
--- P2, on the immersive editing experience
-
-Participants also identified areas for improvement, primarily related to hand-tracking stability when adjusting fine details. They suggested adding an undo feature and reducing degrees of freedom during certain operations.
+**Suggestions for Improvement:**
+Suggestions included adding an undo function (P7, P9, P12), enhancing particle numbers for better surface reconstruction (P7, P12), and introducing more geometric presets like ellipsoids and rectangular prisms (P8, P12). Hand-tracking performance was identified as a consistent issue, with imprecision and instability affecting precise operations.
 
 ## Study 2: Comparison with Blender
 
-To directly compare VR-Doh with conventional tools, we asked 6 participants to create both a Swiss roll and a donut using VR-Doh and Blender 4.3, guided by video tutorials.
+We conducted a second study comparing VR-Doh with Blender through semi-structured interviews with participants.
 
-### Time Results
+### Key Differences in Operational Experience
 
-| Task | VR-Doh | Blender |
-|:-----|:------:|:-------:|
-| Swiss Roll | **5.6 min** | 9.4 min |
-| Donut | **5.2 min** | 11.8 min |
+- P1 noted that VR-Doh's 3D perspective makes macroscopic object shaping in a spatial environment more convenient, while Blender's 2D perspective is better suited for detailed operations using a mouse.
+- P2 emphasized that VR-Doh is easy to learn, with simple operational logic that is highly accessible. Although its modeling logic may not be immediately clear, it becomes easy to understand after watching a tutorial.
+- P3 likened VR-Doh to the experience of working with real clay models, but noted its limitations in fine detail control, whereas Blender excels in precision.
+- P4 observed that VR-Doh focuses on holistic, overall manipulation, while Blender is better for localized, detailed adjustments.
+- P5 pointed out that VR-Doh's operations are more intuitive and easier to start, while Blender's quantitative approach is more precise, reducing unintended errors.
 
-**Table 2:** *Average completion times for modeling tasks.*
+### Advantages and Disadvantages
 
-### Key Advantages Identified
+**VR-Doh Advantages:**
+- P1 highlighted that VR-Doh enables quick modeling using hands, efficiently realizing design concepts and avoiding the issue of "hands lagging behind the mind."
+- P2 noted that VR-Doh's operations are more intuitive.
+- P4 observed that VR-Doh offers realistic physical deformation that corresponds to real-world experiences.
 
-Participants identified four key advantages of VR-Doh over Blender:
+**VR-Doh Limitations:**
+- Precision during object shaping was noted as a disadvantage (P1, P2, P3, P4).
+- The lack of an undo function was highlighted (P5).
+- Fine operational control is limited compared to Blender (P3).
 
-1. **Flexible selection**: Dexterous hand movements enable intuitive area selection, avoiding over-selection issues common in 2D views
-2. **Realistic deformation**: Elastoplastic simulation provides more realistic results than geometric methods like ARAP
-3. **Pose editing without rigging**: Body parts can be adjusted directly without skeletal binding
-4. **Physics-based cutting**: Objects can be separated at weak points by applying force, without manually adjusting cutting planes
-
-However, participants noted that for specialized tasks requiring very high precision, Blender's exact vertex/edge/face selection remains superior. The two tools exhibit a **complementary relationship**---VR-Doh excels at intuitive global shaping, while Blender provides precision for detailed edits.
+**Conclusion:** VR-Doh and Blender exhibit a **complementary relationship**---VR-Doh excels at intuitive global shaping and quickly expressing design ideas, while Blender provides precision for detailed, localized operations.
 
 # Example Creations
 
