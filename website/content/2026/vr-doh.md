@@ -1,13 +1,13 @@
 +++
 title = "VR-Doh: Hands-On 3D Modeling in VR with Physics-Based Simulations"
-date = 2025-11-24
+date = 2026-01-19
 
 [taxonomies]
 areas = ["Graphics"]
 tags = ["virtual-reality", "3D-modeling", "physics-simulation", "HCI", "gaussian-splatting"]
 
 [extra]
-author = {name = "Rouslan Fikhou", url = "https://github.com/Roushelfy" }
+author = {name = "Zhaofeng Luo", url = "https://github.com/Roushelfy" }
 committee = [
     {name = "Committee Member 1", url = "https://www.cs.cmu.edu/"},
     {name = "Committee Member 2", url = "https://www.cs.cmu.edu/"},
@@ -36,7 +36,7 @@ Meanwhile, Virtual Reality (VR) has emerged as a promising platform for 3D conte
 
 > What if modeling in VR could feel as intuitive as working with physical clay?
 
-<p></p>
+
 
 This question led us to develop VR-Doh, a system that bridges the gap between physical intuition and digital creation.
 
@@ -137,7 +137,7 @@ Original 3D Gaussian training focuses on surface appearance, leaving object inte
 
 We introduce a regularization loss during Gaussian training that penalizes large volume differences between Gaussians:
 
-$$ L_{\text{vol\_ratio}} = \max \left( \frac{\text{mean}(V_{\text{top}, \alpha})}{\text{mean}(V_{\text{bottom}, \alpha})}, r \right) - r $$
+$$ L_{\mathrm{vol\_ratio}} = \max \left( \frac{\mathrm{mean}(V_{\mathrm{top}, \alpha})}{\mathrm{mean}(V_{\mathrm{bottom}, \alpha})}, r \right) - r $$
 
 This encourages more uniform Gaussian distributions throughout the object, ensuring consistent visual quality even under extreme deformations.
 
@@ -181,73 +181,30 @@ To support complete modeling workflows, VR-Doh includes standard operations:
 
 # User Studies: Does It Actually Work?
 
-We conducted two user studies to evaluate VR-Doh's usability and effectiveness.
+We conducted two user studies to evaluate VR-Doh's usability and effectiveness. Detailed participant feedback is available on the [project website](https://roushelfy.github.io/VR-Doh/).
 
 ## Study 1: Usability and Effectiveness of VR-Doh
 
-We invited 12 participants---6 experts (P1-P6) with 3-5 years of 3D modeling experience and 6 novices (P7-P12) without prior experience---to evaluate VR-Doh through semi-structured interviews.
+We recruited 12 participants—6 experts with 3-5 years of 3D modeling experience and 6 novices without prior experience—for semi-structured interviews.
 
 ![User Study Results](./User_Study_Results.jpg)
-**Figure 7:** *User study outcomes showing edited 3D GS models (top row) and newly created models (bottom row) by novice and expert participants.*
+**Figure 7:** *User study outcomes showing edited 3D GS models (top row) and newly created models (bottom row) by participants.*
 
-### Expert Feedback (P1-P6)
+**Key Findings:**
+- Both groups praised the intuitive "clay-like" interaction and real-time deformation feedback
+- Experts appreciated the efficiency for rapid prototyping and creative brainstorming
+- Novices highlighted the low learning curve compared to traditional tools
 
-**Most Satisfying Aspects:**
-- P1 highlighted the simplicity and enjoyment the tool brought to tasks, such as using a stick to create holes while designing strawberries, making the process feel immersive. The pinch gesture interaction using both hands was found to be very practical.
-- P2 appreciated the tool's ease of use without requiring extensive expertise, along with its high efficiency. The realistic deformation process, especially while editing the mermaid model, provided a visually engaging experience, akin to real swimming.
-- P4 noted the tool's capability to provide real-time feedback on deformation with realistic rendering, which is often time-consuming in conventional modeling software.
-- P6 valued the ability to merge objects seamlessly and highlighted the pinch gesture for shape editing without damaging surface details.
-
-**Key Challenges Identified:**
-- P1 found that the lack of tactile feedback made it challenging to adapt to deforming objects in VR, requiring time to adapt to the new operational logic.
-- P3 and P6 identified difficulties in precisely adjusting the relative position of two merged objects using hands.
-- P4 noted that the pinch gesture lacked intuitive force control, making it hard to determine the appropriate force for different materials.
-- The absence of an undo function was mentioned as a major limitation by P3 and P6.
-
-**Comparison with Traditional Tools:**
-- P1 noted that VR-Doh's ability to make objects soft for modeling allows for more flexible and realistic deformations compared to setting control points manually, though the manual method is more precise.
-- P2 emphasized VR-Doh's higher design efficiency, making it better suited for quickly expressing and brainstorming creative ideas and facilitating communication with other designers.
-- P5 discussed that traditional tools like 3DMax and ZBrush are mesh-based, requiring adjustments from points to lines to surfaces, while VR-Doh mirrors natural manipulation and plasticity, avoiding the need to learn internal operational logic.
-
-### Novice Feedback (P7-P12)
-
-**Most Satisfying Aspects:**
-- P7 found the intuitive operation, such as "modeling like clay," to be highly satisfactory due to its low learning curve.
-- P9 highlighted the tool's diverse and comprehensive features, including gravity-assisted functionality.
-- P10 valued the high usability of the tool, noting its support for high frame rates and smooth real-time performance.
-- P12 appreciated the realistic object rendering provided by the tool.
-
-**Usability Assessment:**
-The tool was widely regarded as user-friendly, with low learning curves and easy-to-use interfaces across all novice participants. The system offered smooth and stable interactions with high frame rates, providing a seamless experience without noticeable lags or motion sickness. In terms of realism, participants appreciated the adherence to physical rules and the overall accuracy in modeling, though some noted areas for improvement such as material diversity and surface smoothing.
-
-**Suggestions for Improvement:**
-Suggestions included adding an undo function (P7, P9, P12), enhancing particle numbers for better surface reconstruction (P7, P12), and introducing more geometric presets like ellipsoids and rectangular prisms (P8, P12). Hand-tracking performance was identified as a consistent issue, with imprecision and instability affecting precise operations.
+**Identified Limitations:**
+- Lack of tactile feedback makes force control challenging
+- Difficulty with precise positioning when merging objects
+- Absence of undo functionality
 
 ## Study 2: Comparison with Blender
 
-We conducted a second study comparing VR-Doh with Blender through semi-structured interviews with participants.
+We compared VR-Doh with Blender through structured interviews with participants experienced in both tools.
 
-### Key Differences in Operational Experience
-
-- P1 noted that VR-Doh's 3D perspective makes macroscopic object shaping in a spatial environment more convenient, while Blender's 2D perspective is better suited for detailed operations using a mouse.
-- P2 emphasized that VR-Doh is easy to learn, with simple operational logic that is highly accessible. Although its modeling logic may not be immediately clear, it becomes easy to understand after watching a tutorial.
-- P3 likened VR-Doh to the experience of working with real clay models, but noted its limitations in fine detail control, whereas Blender excels in precision.
-- P4 observed that VR-Doh focuses on holistic, overall manipulation, while Blender is better for localized, detailed adjustments.
-- P5 pointed out that VR-Doh's operations are more intuitive and easier to start, while Blender's quantitative approach is more precise, reducing unintended errors.
-
-### Advantages and Disadvantages
-
-**VR-Doh Advantages:**
-- P1 highlighted that VR-Doh enables quick modeling using hands, efficiently realizing design concepts and avoiding the issue of "hands lagging behind the mind."
-- P2 noted that VR-Doh's operations are more intuitive.
-- P4 observed that VR-Doh offers realistic physical deformation that corresponds to real-world experiences.
-
-**VR-Doh Limitations:**
-- Precision during object shaping was noted as a disadvantage (P1, P2, P3, P4).
-- The lack of an undo function was highlighted (P5).
-- Fine operational control is limited compared to Blender (P3).
-
-**Conclusion:** VR-Doh and Blender exhibit a **complementary relationship**---VR-Doh excels at intuitive global shaping and quickly expressing design ideas, while Blender provides precision for detailed, localized operations.
+**Results:** VR-Doh and Blender exhibit a **complementary relationship**. VR-Doh excels at intuitive global shaping and quickly expressing design ideas—participants described it as avoiding "hands lagging behind the mind." Blender provides superior precision for detailed, localized operations. Participants suggested using VR-Doh for initial concept exploration and Blender for refinement.
 
 # Example Creations
 
@@ -307,20 +264,4 @@ As one participant noted, VR-Doh helps avoid the common frustration with convent
 
 VR-Doh is open-sourced at [https://github.com/Simulation-Intelligence/VR-Doh](https://github.com/Simulation-Intelligence/VR-Doh).
 
-# References
-
-[1] Jiang, C., Schroeder, C., Selle, A., Teran, J., & Stomakhin, A. (2015). The affine particle-in-cell method. *ACM Transactions on Graphics*, 34(4), 1-10.
-
-[2] Hu, Y., Fang, Y., Ge, Z., Qu, Z., Zhu, Y., Pradhana, A., & Jiang, C. (2018). A moving least squares material point method with displacement discontinuity and two-way rigid body coupling. *ACM Transactions on Graphics*, 37(4), 1-14.
-
-[3] Kerbl, B., Kopanas, G., Leimkühler, T., & Drettakis, G. (2023). 3D Gaussian splatting for real-time radiance field rendering. *ACM Transactions on Graphics*, 42(4), 1-14.
-
-[4] Xie, T., Zong, Z., Qiu, Y., Li, X., Feng, Y., Yang, Y., & Jiang, C. (2024). PhysGaussian: Physics-integrated 3D Gaussians for generative dynamics. *CVPR 2024*.
-
-[5] Rosales, E., Rodriguez, J., & Sheffer, A. (2019). SurfaceBrush: From virtual reality drawings to manifold surfaces. *ACM Transactions on Graphics*, 38(4), 1-15.
-
-[6] Yu, Y., Lieu, K., Savvides, M., & Chai, J. (2021). Cassie: Curve and surface sketching in immersive environments. *CHI Conference on Human Factors in Computing Systems*.
-
-[7] Fang, Y., Li, M., Gao, M., & Jiang, C. (2021). Interactive Design Practice with Deformable Object Simulation. *Technical Report*.
-
-[8] Arora, R., Kazi, R. H., Kaufman, D. M., Li, W., & Singh, K. (2019). MagicalHands: Mid-air hand gestures for animating in VR. *UIST '19: Proceedings of the 32nd Annual ACM Symposium on User Interface Software and Technology*.
+_This post is based on the research paper [VR-Doh: Hands-on 3D Modeling in Virtual Reality](https://dl.acm.org/doi/epdf/10.1145/3731154), published in [ACM Transactions on Graphics (SIGGRAPH), 2025](https://s2025.siggraph.org/)._
