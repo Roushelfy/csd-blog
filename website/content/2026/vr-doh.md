@@ -17,14 +17,14 @@ committee = [
 
 Have you ever wished you could sculpt a 3D model as naturally as shaping clay with your bare hands? Traditional 3D modeling software like Blender and Maya, while powerful, often require significant expertise---users must master complex interfaces, learn specialized techniques for vertex manipulation, and spend considerable time fine-tuning their creations. This steep learning curve has long been a barrier preventing creative individuals from expressing their ideas in three dimensions.
 
-In this blog post, I introduce **VR-Doh**, an immersive virtual reality system that transforms 3D modeling into an intuitive, hands-on experience. By combining physics-based simulation with natural hand interactions, VR-Doh allows users to create and edit 3D content as if they were molding real clay---no specialized training required.
+In this blog post, we introduce **VR-Doh**, a virtual reality system that lets you shape 3D models with your bare hands. The name is a nod to Play-Doh—because we think 3D modeling should feel just as natural as playing with clay. By combining physics simulation with hand tracking, VR-Doh lets you sculpt digital objects the way you'd sculpt real ones. No manual required.
 
 ![VR-Doh Teaser showing hands-on 3D modeling in virtual reality](./VR-Doh-Teaser.png)
 **Figure 1:** *VR-Doh enables intuitive 3D modeling through physics-based simulations and natural hand interactions in virtual reality. Users can deform objects, edit realistic 3D Gaussian Splatting representations, and create new models from scratch.*
 
 # The Challenge: Making 3D Modeling Accessible
 
-The demand for 3D digital content has never been higher. From video games and movies to product design and virtual environments, 3D models are everywhere. Yet creating these models remains a task largely reserved for professionals.
+3D models are everywhere now—games, movies, product design, VR environments. But have you ever tried making one? Unless you're already a pro, it's usually a frustrating maze of complex menus and cryptic hotkeys.
 
 Traditional 3D modeling tools impose significant barriers for novice users:
 
@@ -32,13 +32,11 @@ Traditional 3D modeling tools impose significant barriers for novice users:
 - **Unintuitive interactions**: Manipulating 3D objects through a 2D screen with a mouse feels disconnected from real-world creation
 - **Iterative fine-tuning**: Achieving desired results often requires careful observation and repeated adjustments
 
-Meanwhile, Virtual Reality (VR) has emerged as a promising platform for 3D content creation. Commercial tools like Shapelab and Gravity Sketch have made strides in VR modeling, but they still rely primarily on geometric approaches---drawing curves to form surfaces, manipulating vertices, and using procedural operations. These methods, while effective, still demand significant skills and don't fully leverage what VR does best: immersive, natural interactions.
+Virtual Reality (VR) seems like the perfect solution. Commercial tools like Shapelab and Gravity Sketch have made strides in VR modeling, but they still rely primarily on geometric approaches---drawing curves to form surfaces, manipulating vertices, and using procedural operations. These methods, while effective, still demand significant skills and don't fully leverage what VR does best: immersive, natural interactions.
 
 > What if modeling in VR could feel as intuitive as working with physical clay?
 
-
-
-This question led us to develop VR-Doh, a system that bridges the gap between physical intuition and digital creation.
+We wanted to make this happen. That's how VR-Doh started.
 
 # Our Approach: Physics Meets Virtual Reality
 
@@ -67,9 +65,9 @@ At the heart of VR-Doh lies the **Material Point Method (MPM)**, a hybrid simula
 
 Traditional simulation methods face trade-offs that make them unsuitable for interactive clay-like modeling:
 
-- **Mesh-based methods** (like finite element analysis) struggle with large deformations because their mesh elements become distorted
+- **Mesh-based methods** (Lagrangian, like finite element analysis) struggle with large deformations because their mesh elements become distorted
 - **Pure particle methods** can be noisy and may not accurately capture material stiffness
-- **Grid-based methods** require very fine resolutions to capture detailed geometries
+- **Grid-based methods** (Eulerian) require very fine resolutions to capture detailed geometries
 
 MPM combines the best of both worlds. It represents materials as particles that carry mass, velocity, and deformation information, while using a background grid to efficiently compute forces and handle collisions. This hybrid approach naturally handles:
 
@@ -112,7 +110,7 @@ VR-Doh supports two rendering paradigms to serve different use cases.
 
 ## Mesh Rendering for Creation
 
-When users create models from scratch, we reconstruct surface meshes from MPM particles using the Marching Cubes algorithm. The process transfers particle mass onto a uniform density grid and extracts an isosurface to construct the mesh. Laplacian smoothing is applied to improve surface quality.
+When users create models from scratch, we reconstruct surface meshes from MPM particles using the Marching Cubes algorithm—a classic technique that extracts a polygonal mesh surface from a density field. The process transfers particle mass onto a uniform density grid and extracts an isosurface to construct the mesh. Laplacian smoothing is applied to improve surface quality.
 
 To prevent unwanted visual artifacts when different objects are close together, we assign a "category" attribute to each particle. This ensures that each object is reconstructed and rendered independently.
 
@@ -120,13 +118,13 @@ To prevent unwanted visual artifacts when different objects are close together, 
 
 For editing existing photorealistic 3D content, VR-Doh leverages 3D Gaussian Splatting---a recent breakthrough in neural scene representation. This representation captures complex appearances using millions of oriented 3D Gaussians, enabling high-fidelity rendering of real-world objects.
 
-We build upon PhysGaussian to enable physics-based editing of these representations. However, direct application faces challenges:
+We build upon [PhysGaussian](https://xpandora.github.io/PhysGaussian/)—a method that integrates MPM physics with Gaussian Splatting—to enable physics-based editing of these representations. However, direct application faces challenges:
 
 ### Decoupled Appearance and Physical Representations
 
-Capturing complex visual appearances requires high-density Gaussian distributions---often much denser than what's needed for physics simulation. Running MPM on every Gaussian would be prohibitively expensive.
+Capturing complex visual appearances requires high-density Gaussian distributions—often much denser than what's needed for physics simulation. Running MPM on millions of individual Gaussians would be prohibitively expensive.
 
-Our solution decouples the simulation from rendering: a smaller number of MPM particles drive the physics, while the full set of Gaussians follows along for rendering. During each simulation step, MPM particles execute the full physics update first. Then, Gaussian kernels use the resulting grid velocities to update their positions. This approach nearly **doubles the frame rate** while maintaining visual quality.
+Our solution decouples the simulation from rendering: we use a sparse set of physics particles to drive the motion, while the full set of dense visual Gaussians follows along for rendering. During each simulation step, MPM particles execute the full physics update first. Then, Gaussian kernels use the resulting grid velocities to update their positions. This approach nearly **doubles the frame rate** while maintaining visual quality.
 
 ![Decoupled Representations](./Improved_Gaussian.png)
 **Figure 4:** *Reducing the number of MPM particles while maintaining the full Gaussian count for rendering. As the sampling ratio decreases, performance improves significantly with minimal impact on visual quality.*
@@ -139,7 +137,7 @@ We introduce a regularization loss during Gaussian training that penalizes large
 
 $$ L_{\mathrm{vol\_ratio}} = \max \left( \frac{\mathrm{mean}(V_{\mathrm{top}, \alpha})}{\mathrm{mean}(V_{\mathrm{bottom}, \alpha})}, r \right) - r $$
 
-This encourages more uniform Gaussian distributions throughout the object, ensuring consistent visual quality even under extreme deformations.
+Simply put, this formula compares the average volume of the largest Gaussians ($V_{\mathrm{top}}$, weighted by opacity $\alpha$) against the smallest ones ($V_{\mathrm{bottom}}$). When the ratio exceeds a threshold $r$, the loss penalizes this imbalance, encouraging more uniform Gaussian distributions throughout the object and ensuring consistent visual quality even under extreme deformations.
 
 # Hand-Based Interactions
 
@@ -147,7 +145,7 @@ VR-Doh supports multiple interaction modalities that work together to enable bot
 
 ## Contact-Based Modeling
 
-The most direct interaction is simply using your hands to touch and deform virtual objects. We approximate hand geometry using the medial axis transform---a compact representation consisting of spheres and cones that accurately captures hand shape while being efficient to compute collisions against.
+The most direct interaction is simply using your hands to touch and deform virtual objects. We approximate hand geometry using a skeleton-like representation called the medial axis transform—a compact structure consisting of spheres and cones that accurately captures hand shape while being efficient to compute collisions against.
 
 ![Hand Geometry Approximation](./MAT_Hand.jpg)
 **Figure 5:** *Medial axis approximation of hand geometry. A hand can be represented by 76 medial cones and 28 medial slabs, enabling efficient and accurate collision detection.*
@@ -204,7 +202,9 @@ We recruited 12 participants—6 experts with 3-5 years of 3D modeling experienc
 
 We compared VR-Doh with Blender through structured interviews with participants experienced in both tools.
 
-**Results:** VR-Doh and Blender exhibit a **complementary relationship**. VR-Doh excels at intuitive global shaping and quickly expressing design ideas—participants described it as avoiding "hands lagging behind the mind." Blender provides superior precision for detailed, localized operations. Participants suggested using VR-Doh for initial concept exploration and Blender for refinement.
+**Results:** VR-Doh and Blender exhibit a **complementary relationship**—VR-Doh excels at intuitive global shaping, while Blender provides superior precision for detailed operations. Participants suggested using VR-Doh for initial concept exploration and Blender for refinement.
+
+> **Key Insight:** Participants felt VR-Doh avoided the common frustration where "hands lag behind the mind"—the system's immediacy let them express ideas as fast as they could think them.
 
 # Example Creations
 
@@ -242,7 +242,7 @@ While VR-Doh significantly advances accessible 3D modeling, several challenges r
 
 **Lack of haptic feedback**: Without tactile sensation, users must rely entirely on visual cues when gauging contact forces. This can lead to accidental modifications, especially in occluded regions where users can't see their hands touching the object.
 
-**Hand tracking stability**: Consumer VR headset hand tracking introduces minor positional jitter that affects delicate manipulations.
+**Hand tracking stability**: Even with our smoothing algorithms, you can sometimes see your virtual hands shaking when trying to do fine detail work. It's a hardware limitation we're still fighting against.
 
 ## Future Directions
 
